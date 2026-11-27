@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Espelho Final · Simulado · Oficina dos Espelhos</title>
+<style>
+:root{--bg:#0f1420;--bg2:#161d2d;--card:#1b2436;--line:#2c3850;--prata:#d7dee8;--prata2:#9fb0c6;--ouro:#e2b65a;--ouro2:#f3d48f;--verde:#4fd18b;--verm:#ef5f67;--azul:#7fb3ff;--laranja:#f39a4b}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(1200px 600px at 80% -10%,#1d2a44 0%,transparent 60%),radial-gradient(900px 500px at -10% 20%,#1a2238 0%,transparent 55%),var(--bg);color:var(--prata);font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;font-size:18px;line-height:1.6}
+a{color:var(--ouro2)}
+.wrap{max-width:980px;margin:0 auto;padding:18px 16px 80px}
+h1,h2,h3{font-family:Georgia,"Palatino Linotype",serif;line-height:1.25}
+h1{font-size:2rem;margin:.2em 0}
+h2{font-size:1.45rem;margin:.2em 0 .5em}
+h3{font-size:1.15rem;margin:.8em 0 .3em;color:var(--ouro2)}
+.topo{background:linear-gradient(135deg,#1c2740,#111827);border:1px solid var(--line);border-radius:22px;padding:22px 20px;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.topo:before{content:"";position:absolute;inset:-40% -10% auto auto;width:340px;height:340px;background:conic-gradient(from 200deg,transparent,rgba(215,222,232,.18),transparent 40%);border-radius:50%;filter:blur(2px)}
+.topo .kicker{color:var(--ouro);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:.8rem}
+.topo p{margin:.4em 0;color:var(--prata2)}
+.moldura{border:3px solid var(--ouro);border-radius:18px;padding:3px}
+.moldura>.inner{border:1px solid rgba(226,182,90,.4);border-radius:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin:16px 0;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.narrador{background:rgba(127,179,255,.08);border-left:4px solid var(--azul);border-radius:10px;padding:10px 14px;margin:12px 0;font-style:italic;color:#c9dbf5}
+.postit{background:#fbe78a;color:#3a2f05;border-radius:4px 14px 6px 12px;padding:12px 14px;margin:12px 0;box-shadow:3px 4px 0 rgba(0,0,0,.35);transform:rotate(-.6deg);font-size:.97rem}
+.postit b{color:#5a3d00}
+.pegadinha{background:rgba(239,95,103,.1);border:1px solid rgba(239,95,103,.55);border-left:6px solid var(--verm);border-radius:12px;padding:10px 14px;margin:12px 0}
+.pegadinha .tt{color:#ff9aa0;font-weight:800}
+.trinca{background:rgba(243,154,75,.08);border:1px dashed var(--laranja);border-radius:12px;padding:10px 14px;margin:12px 0}
+.trinca .tt{color:var(--laranja);font-weight:800}
+.ok{color:var(--verde)}.bad{color:var(--verm)}
+.selo{display:inline-block;border-radius:999px;padding:2px 10px;font-size:.78rem;font-weight:800;margin-left:6px;vertical-align:middle;white-space:nowrap}
+.s-r{background:rgba(239,95,103,.18);color:#ff9aa0;border:1px solid rgba(239,95,103,.6)}
+.s-o{background:rgba(243,154,75,.16);color:#ffc08a;border:1px solid rgba(243,154,75,.6)}
+.s-y{background:rgba(226,182,90,.15);color:var(--ouro2);border:1px solid rgba(226,182,90,.55)}
+.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#24304a;color:var(--prata);border-radius:12px;padding:10px 16px;font-size:1rem;font-weight:700;cursor:pointer;text-decoration:none;font-family:inherit}
+.btn:hover{filter:brightness(1.15)}
+.btn[disabled]{opacity:.45;cursor:not-allowed;filter:none}
+.btn.ouro{background:linear-gradient(180deg,#f0c86e,#c9963a);color:#2a1d02;border-color:#e2b65a}
+.btn.verde{background:linear-gradient(180deg,#5fe09a,#2fa866);color:#04210f;border-color:#4fd18b}
+.btn.verm{background:linear-gradient(180deg,#f2737a,#c9414a);color:#fff;border-color:#ef5f67}
+.btn.peq{padding:6px 10px;font-size:.88rem;border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:.93rem}
+th,td{border:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top}
+th{background:#202b42;color:var(--ouro2)}
+tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.tabwrap{overflow-x:auto}
+.ex{background:#131a29;border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:6px 0;font-family:Georgia,serif}
+.ex u{text-decoration-color:var(--ouro);text-decoration-thickness:2px}
+mark{background:rgba(226,182,90,.25);color:#fff1cf;border-radius:4px;padding:0 3px}
+.savebar{position:sticky;bottom:0;z-index:30;background:rgba(15,20,32,.96);border-top:1px solid var(--line);padding:8px 12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;font-size:.85rem;backdrop-filter:blur(4px)}
+.savebar .st{color:var(--prata2);margin-right:6px}
+#modalBack{position:fixed;inset:0;background:rgba(5,8,14,.82);z-index:1000;display:none;align-items:center;justify-content:center;padding:16px}
+#modalBack.on{display:flex}
+#modalBox{background:#1b2436;border:2px solid var(--ouro);border-radius:18px;max-width:520px;width:100%;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+#modalBox .acts{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:14px}
+#lockCover{position:fixed;inset:0;background:#0b0f18;z-index:900;display:none}
+#lockCover.on{display:block}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:#202b42;border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:.88rem;color:var(--prata);text-decoration:none}
+.foot{text-align:center;color:var(--prata2);font-size:.9rem;margin-top:30px}
+@media (max-width:600px){body{font-size:17px}h1{font-size:1.6rem}.card{padding:14px}}
+</style>
+<script>
+/* ===== Oficina dos Espelhos — núcleo comum (armazenamento, modal, trilha) ===== */
+var KIT = {
+  slug: 'oficespelhos8',
+  nome: 'Oficina dos Espelhos',
+  keys: { resumo: 'oficespelhos8_resumo_v1', simulado: 'oficespelhos8_simulado_v1', trilha: 'oficespelhos8_trilha_v1' }
+};
+var MEM = {};
+function lsGet(k){ try{ var v = window.localStorage.getItem(k); if (v !== null) return v; }catch(e){} return Object.prototype.hasOwnProperty.call(MEM,k) ? MEM[k] : null; }
+function lsSet(k,v){ MEM[k] = v; try{ window.localStorage.setItem(k,v); }catch(e){} }
+function lsDel(k){ delete MEM[k]; try{ window.localStorage.removeItem(k); }catch(e){} }
+function getJ(k){ try{ var s = lsGet(k); return s ? JSON.parse(s) : null; }catch(e){ return null; } }
+function setJ(k,o){ lsSet(k, JSON.stringify(o)); }
+function kitKeys(){
+  var out = [], p = KIT.slug + '_';
+  try{ for (var i = 0; i < window.localStorage.length; i++){ var k = window.localStorage.key(i); if (k && k.indexOf(p) === 0) out.push(k); } }catch(e){}
+  for (var m in MEM){ if (m.indexOf(p) === 0 && out.indexOf(m) < 0) out.push(m); }
+  return out;
+}
+function agoraISO(){ return new Date().toISOString(); }
+function fmtData(iso){
+  if (!iso) return '—';
+  try{ var d = new Date(iso); function z(n){ return (n<10?'0':'')+n; }
+    return z(d.getDate())+'/'+z(d.getMonth()+1)+'/'+d.getFullYear()+' às '+z(d.getHours())+':'+z(d.getMinutes()); }catch(e){ return iso; }
+}
+function esc(s){ return String(s).replace(/[&<>"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+/* ---- modal próprio (nunca alert/confirm/prompt) ---- */
+function modal(html, botoes){
+  var back = document.getElementById('modalBack');
+  if (!back){ back = document.createElement('div'); back.id = 'modalBack'; back.innerHTML = '<div id="modalBox"><div id="modalTxt"></div><div class="acts" id="modalActs"></div></div>'; document.body.appendChild(back); }
+  document.getElementById('modalTxt').innerHTML = html;
+  var acts = document.getElementById('modalActs'); acts.innerHTML = '';
+  (botoes || [{t:'Ok', cls:'ouro'}]).forEach(function(b){
+    var el = document.createElement(b.href ? 'a' : 'button');
+    el.className = 'btn ' + (b.cls || ''); el.textContent = b.t;
+    if (b.href) el.href = b.href;
+    el.onclick = function(){ if (!b.manter) back.classList.remove('on'); if (b.fn) b.fn(); };
+    acts.appendChild(el);
+  });
+  back.classList.add('on');
+}
+
+/* ---- trilha: Resumo → Simulado (Diagnóstico sempre aberto) ---- */
+function estadoTrilha(){
+  var r = getJ(KIT.keys.resumo) || {}, s = getJ(KIT.keys.simulado) || {}, t = getJ(KIT.keys.trilha) || {};
+  return { resumo: !!r.concluido, resumoEm: r.concluidoEm || null, simulado: !!s.concluido, simuladoEm: s.concluidoEm || null,
+           liberado: !!t.liberadoPelosPais, liberadoEm: t.liberadoEm || null, tudoAberto: (!!r.concluido && !!s.concluido) || !!t.liberadoPelosPais };
+}
+function simuladoAberto(){ var e = estadoTrilha(); return e.resumo || e.simulado || e.liberado; }
+
+/* ---- exportar / importar ---- */
+function exportarKit(nomeArq){
+  var dados = { kit: KIT.nome, slug: KIT.slug, exportadoEm: agoraISO(), chaves: {} };
+  kitKeys().forEach(function(k){ var v = getJ(k); dados.chaves[k] = v !== null ? v : lsGet(k); });
+  var blob = new Blob([JSON.stringify(dados, null, 2)], {type:'application/json'});
+  var a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = (nomeArq || KIT.slug) + '_' + new Date().toISOString().slice(0,10) + '.json';
+  document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500);
+}
+function importarKit(depois){
+  var inp = document.createElement('input'); inp.type = 'file'; inp.accept = '.json,application/json';
+  inp.onchange = function(){
+    var f = inp.files && inp.files[0]; if (!f) return;
+    var rd = new FileReader();
+    rd.onload = function(){
+      try{
+        var d = JSON.parse(rd.result); var n = 0;
+        if (!d || !d.chaves) throw new Error('formato');
+        Object.keys(d.chaves).forEach(function(k){ if (k.indexOf(KIT.slug + '_') === 0){ var v = d.chaves[k]; lsSet(k, typeof v === 'string' ? v : JSON.stringify(v)); n++; } });
+        modal('<h3>📤 Progresso importado</h3><p>' + n + ' registro(s) deste kit foram carregados.</p>', [{t:'Ok', cls:'ouro', fn: function(){ if (depois) depois(); }}]);
+      }catch(e){ modal('<h3>Não deu certo</h3><p>Esse arquivo não parece ser um progresso exportado deste kit.</p>'); }
+    };
+    rd.readAsText(f);
+  };
+  inp.click();
+}
+</script>
+</head>
+<body>
+<style>
+.cab{background:#fff;color:#111;border-radius:14px;overflow:hidden;font-family:Calibri,"Segoe UI",Arial,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.cab .faixa{background:#14254a;color:#fff;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.cab .faixa b{font-size:1.15rem}
+.cab .barra{height:6px;background:#c62f37}
+.cab table{font-size:.9rem;color:#111}
+.cab td{border:1px solid #999;background:#fff !important;padding:5px 8px}
+.cab .ori{padding:8px 16px 12px;font-size:.88rem}
+.cab .ori ol{margin:4px 0;padding-left:22px}
+.cab .tit{text-align:center;font-weight:800;padding:8px;border-top:1px solid #999;letter-spacing:.02em}
+.q .qh{margin-bottom:6px}.q .pts{color:var(--ouro2);font-weight:700}.q .qtema{font-size:.78rem;color:var(--prata2);background:#202b42;border-radius:999px;padding:1px 8px;margin-left:4px}
+.enun{font-weight:600;margin:6px 0 10px}
+.poema,.trecho,.manchete{background:#f5f1e6;color:#222;border-radius:8px;padding:12px 16px;font-family:Georgia,serif;margin:8px 0}
+.manchete{border:2px solid #333}
+.fonte{font-size:.78rem;color:var(--prata2);text-align:right;margin:2px 0 8px}
+.alt{display:flex;gap:6px;align-items:flex-start;padding:7px 10px;border:1px solid var(--line);border-radius:10px;margin:5px 0;cursor:pointer;background:#141b2a}
+.alt input{display:none}
+.alt.on{border-color:var(--ouro);background:rgba(226,182,90,.12)}
+.alt .par{font-family:monospace;color:var(--ouro2);white-space:nowrap}
+.alt .mk{font-style:normal;display:inline-block;width:.8em;text-align:center;font-weight:900}
+.sel-it,.soma-it,.click-it,.disc-it{margin:7px 0}
+select,input,textarea{background:#0f1522;color:var(--prata);border:1px solid #3b4a68;border-radius:8px;padding:6px 8px;font-size:1rem;font-family:inherit}
+textarea{width:100%}
+.somain{width:90px}
+.pd{cursor:pointer;padding:1px 3px;border-radius:5px;border-bottom:2px dotted #5d6f92}
+.pd:hover{background:rgba(255,255,255,.06)}
+.pd.on{border-bottom:3px solid var(--ouro);background:rgba(226,182,90,.15);color:#fff1cf}
+.aviso{background:rgba(243,154,75,.1);border:1px dashed var(--laranja);border-radius:10px;padding:6px 10px;font-size:.9rem;margin:6px 0}
+.gab{display:none;margin-top:12px;border-top:1px dashed var(--line);padding-top:10px}
+.gtit{font-weight:800;color:var(--ouro2);margin-bottom:6px}
+.g{border-radius:10px;padding:7px 10px;margin:5px 0;font-size:.95rem}
+.gc{background:rgba(79,209,139,.13);border:1px solid var(--verde)}
+.ge{background:rgba(160,170,185,.08);border:1px solid #4a5568;color:#b8c2d0}
+.gm{background:rgba(127,179,255,.08);border:1px solid #4d6ea8}
+.gx{font-size:.88rem;margin-top:3px;color:#c9d3e0}
+.gc .gx{color:#bff0d3}
+.tag{font-size:.75rem;background:#2c3850;border-radius:999px;padding:1px 7px;margin-left:4px;color:var(--prata)}
+.gres{font-weight:800;margin-top:6px}
+.mae{margin-top:6px}
+#resultado{display:none;border:2px solid var(--ouro)}
+.codigo{font-size:1.3rem;background:#0f1522;border:2px dashed var(--ouro);border-radius:12px;padding:10px;text-align:center;margin:10px 0}
+.enviarbox{text-align:center}
+</style>
+<div id="lockCover"></div>
+<div class="wrap">
+  <p><a class="btn peq" href="index.html">← Início</a> <a class="btn peq" href="resumo.html">🗺️ Resumo</a> <a class="btn peq" href="diagnostico.html">🔍 Laudo</a></p>
+  <div class="cab">
+    <div class="faixa"><div><b>Colégio São José</b><br><small>Rede Divina Providência</small></div><div>🪞 Espelho Final · Simulado de recuperação</div></div>
+    <div class="barra"></div>
+    <table>
+      <tr><td colspan="2">Aluno(a): <b>jovem aprendiz</b></td><td>8º Ano</td></tr>
+      <tr><td>Peso da avaliação: 10,0</td><td>Componente: Língua Portuguesa</td><td>Data: ____/____/______</td></tr>
+    </table>
+    <div class="ori"><b>Orientações:</b><ol>
+      <li>Leia cada questão com atenção antes de responder.</li>
+      <li>Nas objetivas, marque <b>uma</b> alternativa — e confira se é a que você quer (na prova, um acerto virou erro na folha de respostas).</li>
+      <li>Nas discursivas, escreva frases completas, com letra maiúscula e pontuação. Um adulto corrige com a resposta modelo.</li>
+      <li>Faça sem consultar o Resumo. Depois de enviar, o gabarito comentado abre com o código.</li>
+    </ol></div>
+    <div class="tit">AVALIAÇÃO DE LÍNGUA PORTUGUESA – RECUPERAÇÃO – 3º TRIMESTRE</div>
+  </div>
+  <div class="narrador">Nota do espelheiro: este é o espelho final. Cada questão reflete uma questão das provas de 23/09 e 28/10 — com frases novas. Respire, leia devagar e lembre do que você poliu no Resumo.</div>
+  <div id="questoes"></div>
+  <div class="card enviarbox">
+    <p id="prog"></p>
+    <button class="btn verm" id="btnEnviar">📨 Enviar o Simulado</button>
+  </div>
+  <div class="card" id="resultado"></div>
+  <p class="foot">🪞 Oficina dos Espelhos · Espelho Final · feito para o jovem aprendiz</p>
+</div>
+<div class="savebar"><span class="st" id="stSalvo">💾 As respostas são salvas automaticamente</span>
+  <button class="btn peq" onclick="exportarKit('espelho-final')">📥 Exportar</button>
+  <button class="btn peq" onclick="importarKit(function(){location.reload();})">📤 Importar</button>
+  <button class="btn peq" onclick="zerarSimulado()">🗑️ Zerar Simulado</button>
+</div>
+<script>
+/* ===== Questões do Espelho Final (30) — formato das provas de 23/09 e 28/10 ===== */
+var QUESTOES = [
+{n:1, pts:0.3, tipo:'mc', tema:'Interpretação (poema)',
+ texto:'<div class="poema"><b>Recado da janela</b><br>Fecha o caderno um pouco<br>olha pela janela<br>a rua molhada<br>o cheiro de pão da esquina<br>o vizinho que acena<br>a tua própria sombra:<br>também ali<br>mora um poema</div><p class="fonte">Poema escrito para este simulado.</p>',
+ enun:'Ao pedir ao leitor que feche o caderno e olhe pela janela, o eu poético convida o leitor a',
+ alts:[
+  {t:'perceber que há poesia nas coisas simples do dia a dia.', ok:1, exp:'O poema lista coisas comuns (a rua, o pão, o vizinho, a sombra) e termina dizendo que “também ali / mora um poema”.'},
+  {t:'desistir de estudar e sair para a rua.', exp:'O poema pede para fechar o caderno “um pouco”: é uma pausa para olhar, não um abandono dos estudos.'},
+  {t:'descrever a paisagem da cidade em detalhes.', exp:'O eu poético não pede uma descrição; ele aponta coisas para o leitor perceber.'},
+  {t:'decorar os elementos que aparecem na rua.', exp:'Nada no poema fala em memorizar.'},
+  {t:'observar apenas a própria sombra.', exp:'A sombra é só um dos itens da lista; o convite é para olhar tudo ao redor.'}]},
+
+{n:2, pts:0.3, tipo:'mc', tema:'Tipos de aposto (texto)',
+ texto:'<div class="trecho">Lucas era o caçula de dona Celeste e de seu Abel, o dono da padaria mais antiga da Vila Aurora. Lucas, ou Lulu, tinha feito quinze anos no mês anterior. Não gostava de acordar cedo, mas era esforçado, diziam os vizinhos. Aos sábados, ia com os primos à feira, pois essa era a grande atração do bairro.</div><p class="fonte">Trecho escrito para este simulado.</p>',
+ enun:'O aposto é um termo acessório da oração que se relaciona com o termo que o antecede. Ele pode explicar, especificar, enumerar ou recapitular informações. Nesse trecho, há apostos explicativos em',
+ alts:[
+  {t:'“o dono da padaria mais antiga da Vila Aurora” e “ou Lulu”.', ok:1, exp:'Os dois vêm separados por vírgula e explicam o termo anterior: quem é seu Abel e qual é o apelido de Lucas.'},
+  {t:'“o caçula de dona Celeste” e “ou Lulu”.', exp:'“o caçula de dona Celeste” vem depois do verbo “era”: é o que se diz de Lucas, não um aposto. Foi esse tipo de troca que aconteceu na prova.'},
+  {t:'“esforçado” e “a grande atração do bairro”.', exp:'Os dois vêm depois do verbo “era”: dizem como alguém ou algo é. Não são apostos.'},
+  {t:'“o caçula de dona Celeste” e “quinze anos”.', exp:'Nenhum dos dois é aposto: um vem depois de “era” e o outro é o complemento de “tinha feito”.'},
+  {t:'“ou Lulu” e “esforçado”.', exp:'“ou Lulu” é aposto explicativo, mas “esforçado” não é.'}]},
+
+{n:3, pts:0.2, tipo:'mc', tema:'Sujeito × vocativo',
+ enun:'Os termos em destaque nas orações abaixo são, respectivamente:<div class="ex"><b>Renata</b> chegou cedo hoje.<br><b>Renata</b>, chegou cedo hoje?</div>',
+ alts:[
+  {t:'sujeito; vocativo.', ok:1, exp:'Na 1ª frase, Renata é quem chegou (sujeito). Na 2ª, a vírgula mostra que Renata está sendo chamada (vocativo) e a pergunta é feita a ela.'},
+  {t:'vocativo; vocativo.', exp:'Na 1ª frase não há vírgula nem chamamento: Renata pratica a ação.'},
+  {t:'aposto; aposto.', exp:'Aposto explica outro termo; aqui “Renata” não explica ninguém.'},
+  {t:'vocativo; sujeito.', exp:'Está invertido: o vocativo é o da frase com vírgula.'}]},
+
+{n:4, pts:0.2, tipo:'mc', tema:'Tipos de aposto',
+ enun:'Indique a única alternativa que apresenta aposto <b>especificativo</b>.',
+ alts:[
+  {t:'O goleiro Davi defendeu o pênalti.', ok:1, exp:'“Davi” vem colado a “o goleiro”, sem vírgula, e especifica qual goleiro — como “A aluna [nome]” na prova.'},
+  {t:'Lorena, a capitã do time, marcou o gol.', exp:'Entre vírgulas, “a capitã do time” explica quem é Lorena: explicativo.'},
+  {t:'O time treinou três jogadas: passe, chute e drible.', exp:'Lista depois dos dois-pontos: enumerativo.'},
+  {t:'Passe, chute e drible, tudo foi treinado.', exp:'“tudo” resume a lista: recapitulativo.'}]},
+
+{n:5, pts:0.3, tipo:'mc', tema:'Tipos de aposto',
+ enun:'Levando em consideração a função do aposto e suas classificações, assinale a alternativa que classifica correta e respectivamente os apostos das orações abaixo:<div class="ex">I. Só levei o essencial: água, mapa e lanterna.<br>II. Aquele rapaz – primo da Bia – mora no prédio azul.<br>III. O escritor Tomás Avelar lançou um livro novo.</div>',
+ alts:[
+  {t:'enumerativo, explicativo, especificativo.', ok:1, exp:'I: lista depois dos dois-pontos (enumerativo). II: entre travessões, explica quem é o rapaz (explicativo). III: nome colado, sem vírgula, diz qual escritor (especificativo).'},
+  {t:'enumerativo, especificativo, explicativo.', exp:'Inverte II e III — foi exatamente a troca feita na prova.'},
+  {t:'recapitulativo, explicativo, especificativo.', exp:'Em I não há palavra que resume (como “tudo” ou “isso”); a lista vem depois dos dois-pontos: enumerativo.'},
+  {t:'recapitulativo, especificativo, vocativo.', exp:'Nenhum dos termos chama alguém, então não há vocativo; e I é enumerativo.'}]},
+
+{n:6, pts:0.3, tipo:'mc', tema:'Tipos de aposto',
+ enun:'Indique a alternativa em que o termo destacado <b>não</b> é um aposto explicativo.',
+ alts:[
+  {t:'Arroz, feijão e salada, <b>tudo</b> estava delicioso.', ok:1, exp:'“tudo” resume a lista anterior: é aposto recapitulativo, não explicativo.'},
+  {t:'Itapema, <b>a cidade vizinha</b>, recebeu muitos turistas.', exp:'Entre vírgulas, explica o que é Itapema: explicativo.'},
+  {t:'Rafael, <b>o goleiro do time</b>, treinou cedo.', exp:'Entre vírgulas, explica quem é Rafael: explicativo.'},
+  {t:'Mel, <b>a cachorra da vizinha</b>, latiu a noite toda.', exp:'Entre vírgulas, explica quem é Mel: explicativo.'}]},
+
+{n:7, pts:0.3, tipo:'mc', tema:'Tipos de aposto', aviso:'Na prova, a resposta certa desta ideia foi marcada na questão, mas a letra errada foi para a folha de respostas. Confira antes de seguir!',
+ enun:'Assinale a alternativa em que o aposto <b>não</b> se refere ao sujeito.',
+ alts:[
+  {t:'Li “O Rio de Vidro”, romance de Lia Fontes.', ok:1, exp:'O aposto “romance de Lia Fontes” explica “O Rio de Vidro”, que é o objeto (o que foi lido). O sujeito é “eu”, que nem aparece.'},
+  {t:'Bruno, meu afilhado, é ótimo nadador.', exp:'“meu afilhado” explica Bruno, que é o sujeito.'},
+  {t:'Florianópolis, capital de Santa Catarina, recebe muitos turistas.', exp:'O aposto explica “Florianópolis”, o sujeito.'},
+  {t:'Rita Moraes, grande pintora, abriu uma exposição.', exp:'“grande pintora” explica Rita Moraes, o sujeito.'}]},
+
+{n:8, pts:0.4, tipo:'sel', tema:'Tipos de aposto',
+ enun:'Relacione as colunas de acordo com o tipo de aposto contido nas orações (0,1 cada):<div class="ex">I. explicativo · II. enumerativo · III. recapitulativo · IV. especificativo</div>',
+ opts:['I','II','III','IV'],
+ itens:[
+  {t:'Coragem, paciência e humor, isso é o que um bom líder precisa ter.', ans:'III', exp:'“isso” resume a lista que veio antes: recapitulativo.'},
+  {t:'No time, valorizamos três atitudes: respeito, união e esforço.', ans:'II', exp:'A lista vem depois dos dois-pontos e detalha “três atitudes”: enumerativo.'},
+  {t:'Nosso treinador, Sérgio Lemos, ganhou um prêmio.', ans:'I', exp:'Entre vírgulas, o nome explica quem é o treinador: explicativo.'},
+  {t:'O filme Noite de Cometas estreia amanhã.', ans:'IV', exp:'O nome vem colado, sem vírgula, e diz qual filme: especificativo.'}]},
+
+{n:9, pts:0.3, tipo:'soma', tema:'Aposto e vocativo', resp:7,
+ enun:'Assinale as afirmativas corretas e escreva a <b>soma</b>:',
+ itens:[
+  {v:1, ok:1, t:'Em “Caio, meu vizinho, viajou ontem”, o termo “meu vizinho” é aposto explicativo.', exp:'Certo: entre vírgulas, explica quem é Caio.'},
+  {v:2, ok:1, t:'Em “Caio, abra a janela!”, o termo “Caio” é vocativo.', exp:'Certo: Caio está sendo chamado.'},
+  {v:4, ok:1, t:'O aposto recapitulativo usa uma palavra como “tudo” ou “isso” para resumir uma enumeração.', exp:'Certo: “Prosperidade, segurança e alegria, isso…”.'},
+  {v:8, ok:0, t:'O aposto especificativo sempre aparece entre vírgulas.', exp:'Errado: o especificativo vem sem vírgula (“O goleiro Davi”).'},
+  {v:16, ok:0, t:'Em “Renata chegou cedo hoje”, o termo “Renata” é vocativo.', exp:'Errado: sem vírgula, Renata é quem chegou — sujeito.'}]},
+
+{n:10, pts:0.5, tipo:'click', tema:'Vocativo',
+ enun:'Toque no <b>vocativo</b> de cada frase — é o mesmo que sublinhar (0,1 cada):',
+ itens:[
+  {pd:['Pai,',' posso sair mais cedo?'], ans:0, exp:'“Pai” é quem está sendo chamado.'},
+  {pd:['Venham jantar,',' meninos!'], ans:1, exp:'“meninos” são chamados para jantar.'},
+  {pd:['Por favor,',' doutora,',' explique de novo.'], ans:1, exp:'“doutora” é a pessoa a quem se fala.'},
+  {pd:['Você chegou,',' Marina,',' bem na hora.'], ans:1, exp:'“Marina”, entre vírgulas, é chamada no meio da frase.'},
+  {pd:['Turma,',' a prova começa agora.'], ans:0, exp:'“Turma” é o grupo chamado.'}]},
+
+{n:11, pts:0.3, tipo:'disc', tema:'Vírgula: vocativo × aposto',
+ enun:'Há diferença de sentido nas orações abaixo? Justifique sua resposta.<div class="ex">a) Lia, minha irmã chegou da escola.<br>b) Lia, minha irmã, chegou da escola.</div>',
+ itens:[{t:'Sua justificativa:', modelo:'Sim. Em (a), “Lia” é vocativo: a pessoa fala COM Lia e conta que “minha irmã” (o sujeito) chegou da escola — são duas pessoas. Em (b), “minha irmã” é aposto explicativo de “Lia”: informa-se que Lia, que é minha irmã, chegou — é uma pessoa só.', crit:'Disse que há diferença; explicou a frase (a) (Lia = vocativo, “minha irmã” = sujeito) E a frase (b) (“minha irmã” = aposto de Lia).'}]},
+
+{n:12, pts:0.2, tipo:'mc', tema:'Vocativo (interpretação)',
+ enun:'O vocativo é um termo usado para interpelar ou chamar o interlocutor. No início de um discurso, um candidato a representante de turma diz: <i>“Queridos colegas, esta eleição é de vocês.”</i> Nesse caso, o vocativo é pensado como uma estratégia para',
+ alts:[
+  {t:'aproximar-se dos ouvintes e conquistar a atenção deles.', ok:1, exp:'“Queridos colegas” é um chamamento carinhoso, para ganhar o público — como na reportagem da prova.'},
+  {t:'criticar os adversários.', exp:'Não há crítica a ninguém no chamamento.'},
+  {t:'agir com formalidade exagerada.', exp:'“Queridos” é afetuoso, não formal.'},
+  {t:'descrever a eleição.', exp:'O vocativo chama pessoas; não descreve nada.'},
+  {t:'enganar os ouvintes.', exp:'Nada no trecho indica engano.'}]},
+
+{n:13, pts:0.2, tipo:'mc', tema:'Porquês',
+ enun:'Assinale a alternativa em que o uso de “por que”, “por quê”, “porque” ou “porquê” está <b>incorreto</b>.',
+ alts:[
+  {t:'Porque você não respondeu minha mensagem?', ok:1, exp:'É uma pergunta direta: o certo é “Por que” (separado, sem acento = por qual motivo).'},
+  {t:'Faltei à aula porque estava com febre.', exp:'É explicação/causa: “porque” junto e sem acento está certo.'},
+  {t:'Ninguém entendeu por que a luz apagou.', exp:'Equivale a “por qual motivo”: “por que” separado está certo.'},
+  {t:'A diretora explicou o porquê da mudança.', exp:'Com o artigo “o”, é substantivo: “porquê” junto e com acento está certo.'},
+  {t:'Você saiu tão cedo por quê?', exp:'No fim da frase, antes do ponto: “por quê” com acento está certo.'}]},
+
+{n:14, pts:0.5, tipo:'sel', tema:'Porquês',
+ enun:'Complete com “porque”, “porquê”, “por que” ou “por quê” (0,1 cada):',
+ opts:['porque','porquê','por que','por quê'],
+ itens:[
+  {t:'Você está rindo ____?', ans:'por quê', exp:'Fim de frase, antes do ponto de interrogação: “por quê”.'},
+  {t:'Quero entender o ____ da sua decisão.', ans:'porquê', exp:'Vem com o artigo “o”: é substantivo, “porquê”.'},
+  {t:'Não fui ao jogo ____ choveu muito.', ans:'porque', exp:'Explica a causa: “porque”.'},
+  {t:'____ o ônibus atrasou hoje?', ans:'por que', exp:'Pergunta no início da frase (= por qual motivo): “Por que”.'},
+  {t:'Fiquei em casa, ____ estava cansado.', ans:'porque', exp:'Explicação: “porque”.'}]},
+
+{n:15, pts:0.3, tipo:'mc', tema:'Identificar a voz verbal',
+ enun:'Na oração: <b>“A treinadora mostrava aos atletas a jogada certa.”</b><br>Em que voz verbal a oração se encontra?',
+ alts:[
+  {t:'Voz ativa.', ok:1, exp:'O sujeito (“a treinadora”) é quem faz a ação de mostrar. Na prova, uma frase igualzinha (“A professora apresentava…”) foi chamada de passiva — essa é a trinca a consertar.'},
+  {t:'Voz passiva analítica.', exp:'Não há verbo ser + particípio nem agente com “pela”.'},
+  {t:'Voz passiva sintética.', exp:'Não há o “se” junto do verbo.'},
+  {t:'Voz reflexiva.', exp:'A treinadora não faz a ação em si mesma.'}]},
+
+{n:16, pts:0.3, tipo:'mc', tema:'Voz passiva analítica',
+ enun:'Se transformássemos a oração da questão 15 em voz passiva analítica, a ação verbal seria corretamente expressa por',
+ alts:[
+  {t:'era mostrada.', ok:1, exp:'“mostrava” → “era” (mesmo tempo) + particípio “mostrada”, concordando com “a jogada certa”: “A jogada certa era mostrada aos atletas pela treinadora.”'},
+  {t:'eram mostradas.', exp:'Está no plural, mas o sujeito paciente “a jogada certa” é singular.'},
+  {t:'foi mostrada.', exp:'Muda o tempo: “foi” combina com “mostrou”, não com “mostrava”.'},
+  {t:'mostrou.', exp:'Continua na voz ativa — foi o tipo de resposta marcada na prova (“apresentou”).'},
+  {t:'foram mostradas.', exp:'Tempo e número errados.'}]},
+
+{n:17, pts:0.3, tipo:'mc', tema:'Voz passiva sintética',
+ enun:'Se transformássemos a mesma oração em voz passiva sintética, que termo seria o sujeito paciente?',
+ alts:[
+  {t:'a jogada certa', ok:1, exp:'“Mostrava-se aos atletas a jogada certa.” O que era mostrado é o sujeito paciente — o termo inteiro.'},
+  {t:'a treinadora', exp:'Ela é quem faz a ação; na passiva sintética ela sai da frase.'},
+  {t:'os atletas', exp:'Eles recebem a jogada (a quem se mostra), não são o que é mostrado.'},
+  {t:'a jogada', exp:'Incompleto: o termo é “a jogada certa” (na prova, a certa era o termo inteiro, “a resposta correta”).'},
+  {t:'pela treinadora', exp:'Isso seria o agente da passiva analítica.'}]},
+
+{n:18, pts:0.4, tipo:'vf', tema:'Voz passiva analítica e agente',
+ enun:'Leia a oração: <b>“Os ingressos foram vendidos pela escola em poucas horas.”</b><br>Marque V (verdadeiro) ou F (falso) (0,1 cada):',
+ itens:[
+  {t:'A oração está na voz passiva analítica.', ok:1, exp:'Verdadeiro: verbo ser (“foram”) + particípio (“vendidos”).'},
+  {t:'“pela escola” é o agente da passiva.', ok:1, exp:'Verdadeiro: é quem vendeu, introduzido por “pela”.'},
+  {t:'“Os ingressos” é o sujeito agente.', ok:0, exp:'Falso: os ingressos sofrem a ação — são o sujeito paciente.'},
+  {t:'Na voz ativa, a oração fica: “A escola vendeu os ingressos em poucas horas.”', ok:1, exp:'Verdadeiro: o agente vira sujeito e “foram vendidos” vira “vendeu” (mesmo tempo).'}]},
+
+{n:19, pts:0.5, tipo:'disc', tema:'Voz passiva sintética',
+ enun:'Reescreva as orações abaixo na voz passiva sintética (0,1 cada):',
+ itens:[
+  {t:'a) Os vizinhos pintaram os muros.', modelo:'Pintaram-se os muros.'},
+  {t:'b) Ele escreveu uma carta.', modelo:'Escreveu-se uma carta.'},
+  {t:'c) Eles vendiam bolos na feira.', modelo:'Vendiam-se bolos na feira.'},
+  {t:'d) O carteiro entregou os pacotes ontem.', modelo:'Entregaram-se os pacotes ontem.'},
+  {t:'e) Eles descobriram petróleo no litoral.', modelo:'Descobriu-se petróleo no litoral.'}],
+ critGeral:'Começa pelo verbo + se; o verbo fica no mesmo tempo e concorda com o sujeito paciente (muros, pacotes, bolos → plural); quem fazia a ação sai da frase.'},
+
+{n:20, pts:0.3, tipo:'disc', tema:'Voz passiva analítica',
+ enun:'Leia o verso: <b>“Desenho barcos de papel”</b>. Transponha o verso para a voz passiva analítica.',
+ itens:[{t:'Voz passiva analítica:', modelo:'Barcos de papel são desenhados por mim.', crit:'“são” (presente, como “desenho”) + “desenhados” (concordando com “barcos”); agente “por mim” (o “eu” do verso).'}]},
+
+{n:21, pts:0.3, tipo:'mc', tema:'Agente da passiva',
+ enun:'Qual é o agente da passiva na oração que você escreveu na questão 20?',
+ alts:[
+  {t:'por mim', ok:1, exp:'Quem desenha é o “eu” do verso; na passiva ele vira agente, com “por”.'},
+  {t:'barcos de papel', exp:'É o sujeito paciente — foi essa a troca feita na prova, com “algas cristalinas”.'},
+  {t:'são desenhados', exp:'É a locução verbal da passiva.'},
+  {t:'de papel', exp:'É só parte do sujeito paciente.'},
+  {t:'eu', exp:'“eu” é o sujeito da voz ativa; na passiva ele aparece como “por mim”.'}]},
+
+{n:22, pts:0.3, tipo:'mc', tema:'Identificar a voz verbal',
+ enun:'Leia a manchete: <b>“Cientistas descobrem nova espécie de sapo na Amazônia”</b>.<br>Sobre essa manchete, é correto afirmar:',
+ alts:[
+  {t:'Está na voz ativa, e “Cientistas” é o sujeito agente.', ok:1, exp:'Os cientistas fazem a ação de descobrir — como “Nasa” na prova.'},
+  {t:'Está na voz passiva analítica, e “Cientistas” é o sujeito paciente.', exp:'Não há ser + particípio; os cientistas fazem a ação.'},
+  {t:'Está na voz ativa, e “nova espécie de sapo” é o agente da passiva.', exp:'Na voz ativa não há agente da passiva; “nova espécie de sapo” é o objeto.'},
+  {t:'Está na voz passiva sintética, e “na Amazônia” é o sujeito paciente.', exp:'Não há “se”; “na Amazônia” indica lugar.'},
+  {t:'Está na voz reflexiva, porque os cientistas fazem a ação em si mesmos.', exp:'Eles descobrem outra coisa (a espécie), não a si mesmos.'}]},
+
+{n:23, pts:0.3, tipo:'disc', tema:'Voz passiva analítica e agente',
+ enun:'Passe a manchete da questão 22 para a voz passiva analítica e indique o agente da passiva.',
+ itens:[{t:'Passiva analítica e agente:', modelo:'Nova espécie de sapo é descoberta por cientistas na Amazônia. Agente da passiva: “por cientistas”.', crit:'“é descoberta” (presente, feminino singular, concordando com “nova espécie”) e o agente com “por” (“por cientistas”).'}]},
+
+{n:24, pts:1.0, tipo:'sel', tema:'Funções do “se”',
+ enun:'Numere as colunas quanto às funções do “se” (0,1 cada):<div class="ex">1 – Partícula apassivadora · 2 – Pronome reflexivo · 3 – Índice de indeterminação do sujeito</div>',
+ opts:['1','2','3'],
+ itens:[
+  {t:'Consertam-se bicicletas.', ans:'1', exp:'Verbo sem preposição + o que sofre a ação; dá para dizer “bicicletas são consertadas”. O verbo concorda com “bicicletas”.'},
+  {t:'Vive-se bem nesta cidade.', ans:'3', exp:'Não há o que “ser vivido”; o sujeito fica indeterminado.'},
+  {t:'Téo se olhou no espelho.', ans:'2', exp:'Téo olhou a si mesmo: reflexivo (como “[nome] se furou em um alfinete” na prova).'},
+  {t:'Vende-se esta casa.', ans:'1', exp:'“esta casa é vendida”: partícula apassivadora.'},
+  {t:'Precisa-se de ajudantes.', ans:'3', exp:'“precisar DE”: com preposição, o “se” indetermina o sujeito.'},
+  {t:'Bia se machucou na escada.', ans:'2', exp:'Bia machucou a si mesma: reflexivo.'},
+  {t:'Fala-se muito da nova ponte.', ans:'3', exp:'“falar DE”: índice de indeterminação — o mesmo caso de “Fala-se muito do coronavírus”, que caiu na prova.'},
+  {t:'Procuram-se voluntários.', ans:'1', exp:'“voluntários são procurados”: o verbo concorda com “voluntários”.'},
+  {t:'Confia-se nos bons amigos.', ans:'3', exp:'“confiar EM”: com preposição, índice de indeterminação.'},
+  {t:'Lavam-se carros.', ans:'1', exp:'“carros são lavados”: partícula apassivadora.'}]},
+
+{n:25, pts:0.3, tipo:'mc', rom:1, tema:'Vozes verbais',
+ enun:'Leia as afirmativas:<div class="ex">I. Em “Abriram-se as inscrições”, o “se” é partícula apassivadora.<br>II. Na voz passiva analítica, usa-se o verbo ser + particípio.<br>III. Em “A professora apresentava a resposta”, a oração está na voz passiva.<br>IV. O agente da passiva costuma vir introduzido por “por”, “pelo” ou “pela”.</div>Estão corretas:',
+ alts:[
+  {t:'apenas I, II e IV.', ok:1, exp:'I, II e IV estão certas. A III está errada: a professora faz a ação — voz ativa.'},
+  {t:'apenas I e II.', exp:'Falta a IV, que também está certa (“pela Coreia do Sul”, “pela Nasa”).'},
+  {t:'apenas III e IV.', exp:'A III está errada.'},
+  {t:'apenas II e III.', exp:'A III está errada e a I está certa.'},
+  {t:'I, II, III e IV.', exp:'A III está errada.'}]},
+
+{n:26, pts:0.3, tipo:'mc', rom:1, tema:'Tipos de aposto',
+ enun:'Leia as afirmativas:<div class="ex">I. Em “Comprei três frutas: maçã, pera e uva”, o aposto é enumerativo.<br>II. Em “Maçã, pera e uva, tudo estava fresco”, “tudo” é aposto recapitulativo.<br>III. Em “O cantor Léo Brás fez um show”, o aposto é explicativo.<br>IV. Em “Léo, venha cá!”, “Léo” é aposto.</div>Estão corretas:',
+ alts:[
+  {t:'apenas I e II.', ok:1, exp:'I e II certas. III: nome colado, sem vírgula = especificativo. IV: “Léo” está sendo chamado = vocativo.'},
+  {t:'apenas I, II e III.', exp:'A III está errada: é especificativo.'},
+  {t:'apenas III e IV.', exp:'As duas estão erradas.'},
+  {t:'apenas II e IV.', exp:'A IV está errada (é vocativo) e a I está certa.'},
+  {t:'I, II, III e IV.', exp:'III e IV estão erradas.'}]},
+
+{n:27, pts:0.2, tipo:'mc', rom:1, tema:'Porquês',
+ enun:'Leia as afirmativas:<div class="ex">I. “Por que” é usado em perguntas e equivale a “por qual motivo”.<br>II. “Porquê” é substantivo e vem acompanhado de artigo, como em “o porquê”.<br>III. “Por quê” aparece no fim da frase, antes de um sinal de pontuação.<br>IV. “Porque” é a forma usada para começar uma pergunta direta.</div>Estão corretas:',
+ alts:[
+  {t:'apenas I, II e III.', ok:1, exp:'I, II e III certas. A IV está errada: pergunta direta começa com “Por que”.'},
+  {t:'apenas I e II.', exp:'A III também está certa.'},
+  {t:'apenas III e IV.', exp:'A IV está errada.'},
+  {t:'apenas II e IV.', exp:'A IV está errada; I e III estão certas.'},
+  {t:'I, II, III e IV.', exp:'A IV está errada.'}]},
+
+{n:28, pts:0.3, tipo:'soma', tema:'Funções do “se” e vozes', resp:21,
+ enun:'Assinale as afirmativas corretas e escreva a <b>soma</b>:',
+ itens:[
+  {v:1, ok:1, t:'Em “Vendem-se casas”, o verbo está no plural porque concorda com “casas”, o sujeito paciente.', exp:'Certo: partícula apassivadora, verbo concorda.'},
+  {v:2, ok:0, t:'Em “Precisa-se de vendedores”, o “se” é partícula apassivadora.', exp:'Errado: “precisar DE” — índice de indeterminação do sujeito.'},
+  {v:4, ok:1, t:'“Os pacotes foram entregues pelo carteiro” está na voz passiva analítica.', exp:'Certo: ser + particípio + agente “pelo carteiro”.'},
+  {v:8, ok:0, t:'Em “O pintor pintou o quadro”, o termo “o pintor” é agente da passiva.', exp:'Errado: a frase está na voz ativa; “o pintor” é sujeito agente.'},
+  {v:16, ok:1, t:'Em “Rui se cortou com a faca”, o “se” é pronome reflexivo.', exp:'Certo: Rui cortou a si mesmo.'}]},
+
+{n:29, pts:0.3, tipo:'mc', tema:'Interpretação (manchete)',
+ texto:'<div class="manchete"><b>Remédio contra a gripe é aprovado por agência de saúde</b><br><i>Novo medicamento deve chegar às farmácias no próximo ano</i></div><p class="fonte">Manchete escrita para este simulado.</p>',
+ enun:'Uma notícia apresenta informações em ordem de relevância. Nesse título, o recurso linguístico usado para destacar a informação principal foi',
+ alts:[
+  {t:'a voz passiva, enfatizando o resultado da ação.', ok:1, exp:'O título começa pelo que importa (o remédio aprovado) e deixa quem aprovou para o fim, como agente da passiva.'},
+  {t:'a ordem direta, enfatizando o sujeito da ação.', exp:'Quem fez a ação (a agência) aparece só no fim. Esta foi a alternativa marcada na prova.'},
+  {t:'o uso de verbos no pretérito.', exp:'“é aprovado” está no presente.'},
+  {t:'o sujeito oculto, enfatizando a ação.', exp:'O sujeito (“Remédio contra a gripe”) está bem claro, no começo.'},
+  {t:'a omissão do advérbio, ocultando o local da ação.', exp:'Isso não tem relação com o destaque da informação.'}]},
+
+{n:30, pts:0.3, tipo:'mc', tema:'Interpretação (voz reflexiva)',
+ texto:'<div class="trecho">Antes de sair, a menina parou diante do espelho da sala. Olhou-se demoradamente. Ajeitou o cabelo, desfez o sorriso, tentou outro. Quem era aquela ali, tão séria? Olhou-se de novo e achou que ainda se reconhecia.</div><p class="fonte">Trecho escrito para este simulado.</p>',
+ enun:'No trecho, um dos elementos que mais contribuem para representar o exame que a personagem faz de si mesma é',
+ alts:[
+  {t:'a voz reflexiva (“Olhou-se”, “se reconhecia”).', ok:1, exp:'A menina é, ao mesmo tempo, quem olha e quem é olhada: a voz reflexiva mostra que ela se examina.'},
+  {t:'a narração não linear.', exp:'Os fatos seguem a ordem em que acontecem (parou, olhou-se, ajeitou…). Esta foi a alternativa marcada na prova.'},
+  {t:'o narrador personagem.', exp:'O narrador diz “a menina” (3ª pessoa); ele não é personagem.'},
+  {t:'o discurso direto.', exp:'Não há fala de personagem com travessão ou aspas.'},
+  {t:'o diálogo.', exp:'A menina está sozinha; ninguém conversa.'}]}
+];
+
+/* ===== Motor do Espelho Final ===== */
+var LETRAS = ['a','b','c','d','e'];
+function mulberry32(a){ return function(){ a |= 0; a = a + 0x6D2B79F5 | 0; var t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+var SEMENTE = 20261418;
+/* embaralha as alternativas guardando cada uma pelo seu id (posição original), nunca pela letra */
+QUESTOES.forEach(function(q){
+  if (q.alts){
+    q.alts.forEach(function(a, i){ a.id = 'q' + q.n + 'o' + i; });
+    var rnd = mulberry32(SEMENTE + q.n * 7919), arr = q.alts.slice();
+    for (var i = arr.length - 1; i > 0; i--){ var j = Math.floor(rnd() * (i + 1)); var tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp; }
+    q.ordem = arr;
+    q.certaId = q.alts.filter(function(a){ return a.ok; })[0].id;
+  }
+});
+function letraCerta(q){ for (var i = 0; i < q.ordem.length; i++) if (q.ordem[i].id === q.certaId) return LETRAS[i]; return '?'; }
+function ehObjetiva(q){ return q.tipo !== 'disc'; }
+
+var S = getJ(KIT.keys.simulado) || {};
+if (!S.resp) S.resp = {};
+if (!S.disc) S.disc = {};      /* correção da mãe nas discursivas: 'c' certo, 'm' metade, 'e' errado */
+function salvar(){ S.salvoEm = agoraISO(); setJ(KIT.keys.simulado, S); var el = document.getElementById('stSalvo'); if (el) el.textContent = '💾 Salvo em ' + fmtData(S.salvoEm); }
+
+/* ---- pontuação de uma questão: fração de 0 a 1 (null = discursiva ainda não corrigida) ---- */
+function fracao(q){
+  var r = S.resp[q.n];
+  if (q.tipo === 'mc') return (r && r === q.certaId) ? 1 : 0;
+  if (q.tipo === 'soma') return (r !== undefined && r !== '' && parseInt(r, 10) === q.resp) ? 1 : 0;
+  if (q.tipo === 'sel' || q.tipo === 'vf' || q.tipo === 'click'){
+    var ok = 0; q.itens.forEach(function(it, i){
+      var v = r && r[i];
+      if (q.tipo === 'sel' && v === it.ans) ok++;
+      if (q.tipo === 'vf' && v !== undefined && v !== null && v !== '' && (v === 'V') === !!it.ok) ok++;
+      if (q.tipo === 'click' && v !== undefined && v !== null && v === it.ans) ok++;
+    }); return ok / q.itens.length;
+  }
+  if (q.tipo === 'disc'){
+    var c = S.disc[q.n]; if (!c) return null; var soma = 0, n = 0, falta = false;
+    q.itens.forEach(function(it, i){ var m = c[i]; if (!m) falta = true; soma += m === 'c' ? 1 : (m === 'm' ? 0.5 : 0); n++; });
+    return falta ? null : soma / n;
+  }
+  return 0;
+}
+function respondida(q){
+  var r = S.resp[q.n];
+  if (q.tipo === 'mc') return !!r;
+  if (q.tipo === 'soma') return r !== undefined && r !== '';
+  if (q.tipo === 'disc') return r && q.itens.every(function(it, i){ return r[i] && r[i].trim().length > 0; });
+  return r && q.itens.every(function(it, i){ return r[i] !== undefined && r[i] !== null && r[i] !== ''; });
+}
+function resultado(){
+  var obj = QUESTOES.filter(ehObjetiva), acertos = 0, notaObj = 0, totObj = 0, notaDisc = 0, totDisc = 0, pend = 0, erradas = [];
+  obj.forEach(function(q){ var f = fracao(q); totObj += q.pts; notaObj += q.pts * f; if (f === 1) acertos++; else erradas.push(q); });
+  QUESTOES.filter(function(q){ return !ehObjetiva(q); }).forEach(function(q){ var f = fracao(q); totDisc += q.pts; if (f === null) pend++; else notaDisc += q.pts * f; });
+  return { acertos: acertos, nObj: obj.length, notaObj: Math.round(notaObj * 100) / 100, totObj: Math.round(totObj * 100) / 100,
+           notaDisc: Math.round(notaDisc * 100) / 100, totDisc: Math.round(totDisc * 100) / 100, pendentes: pend, erradas: erradas };
+}
+function gerarCodigo(acertos){
+  var L = 'ABCDEFGHJKLMNPQRSTUVWXYZ', yy = L[Math.floor(Math.random() * L.length)] + L[Math.floor(Math.random() * L.length)];
+  return 'SIM-' + (acertos < 10 ? '0' : '') + acertos + '-' + yy;
+}
+function num(x){ return String(x.toFixed(1)).replace('.', ','); }
+
+/* ---- desenho das questões ---- */
+function render(){
+  var box = document.getElementById('questoes'), h = '';
+  QUESTOES.forEach(function(q){
+    h += '<div class="q card" id="q' + q.n + '"><div class="qh"><b>' + q.n + '.</b> <span class="pts">(' + num(q.pts) + ')</span> <span class="qtema">' + esc(q.tema) + '</span></div>';
+    if (q.texto) h += q.texto;
+    h += '<div class="enun">' + q.enun + '</div>';
+    if (q.aviso) h += '<div class="aviso">⚠️ ' + q.aviso + '</div>';
+    if (q.tipo === 'mc'){
+      q.ordem.forEach(function(a, i){ h += '<label class="alt" data-q="' + q.n + '" data-id="' + a.id + '"><input type="radio" name="r' + q.n + '" value="' + a.id + '"> <span class="par">(<i class="mk"></i>)</span> <b>' + LETRAS[i] + ')</b> <span>' + a.t + '</span></label>'; });
+    } else if (q.tipo === 'soma'){
+      q.itens.forEach(function(it){ h += '<div class="soma-it"><b>' + (it.v < 10 ? '0' : '') + it.v + '.</b> ' + it.t + '</div>'; });
+      h += '<p>Soma: <input class="somain" type="number" min="0" max="31" data-q="' + q.n + '" placeholder="00"></p>';
+    } else if (q.tipo === 'sel'){
+      q.itens.forEach(function(it, i){
+        var sel = '<select data-q="' + q.n + '" data-i="' + i + '"><option value="">—</option>' + q.opts.map(function(o){ return '<option value="' + esc(o) + '">' + esc(o) + '</option>'; }).join('') + '</select>';
+        h += '<div class="sel-it">( ' + sel + ' ) ' + esc(it.t) + '</div>';
+      });
+    } else if (q.tipo === 'vf'){
+      q.itens.forEach(function(it, i){
+        h += '<div class="sel-it">( <select data-q="' + q.n + '" data-i="' + i + '" data-vf="1"><option value="">—</option><option value="V">V</option><option value="F">F</option></select> ) ' + esc(it.t) + '</div>';
+      });
+    } else if (q.tipo === 'click'){
+      q.itens.forEach(function(it, i){
+        h += '<div class="click-it">' + LETRAS[i] + ') ' + it.pd.map(function(p, k){ return '<span class="pd" data-q="' + q.n + '" data-i="' + i + '" data-k="' + k + '">' + esc(p) + '</span>'; }).join('') + '</div>';
+      });
+    } else if (q.tipo === 'disc'){
+      q.itens.forEach(function(it, i){ h += '<div class="disc-it"><div>' + esc(it.t) + '</div><textarea rows="2" data-q="' + q.n + '" data-i="' + i + '" placeholder="Escreva aqui…"></textarea></div>'; });
+    }
+    h += '<div class="gab" id="gab' + q.n + '"></div></div>';
+  });
+  box.innerHTML = h;
+  /* liga os eventos */
+  box.querySelectorAll('input[type=radio]').forEach(function(el){ el.onchange = function(){ if (S.enviado) return; S.resp[el.name.slice(1)] = el.value; salvar(); marcar(); }; });
+  box.querySelectorAll('.somain').forEach(function(el){ el.oninput = function(){ if (S.enviado) return; S.resp[el.dataset.q] = el.value; salvar(); progresso(); }; });
+  box.querySelectorAll('select').forEach(function(el){ el.onchange = function(){ if (S.enviado) return; var r = S.resp[el.dataset.q] || {}; r[el.dataset.i] = el.value; S.resp[el.dataset.q] = r; salvar(); progresso(); }; });
+  box.querySelectorAll('textarea').forEach(function(el){ el.oninput = function(){ if (S.enviado) return; var r = S.resp[el.dataset.q] || {}; r[el.dataset.i] = el.value; S.resp[el.dataset.q] = r; salvar(); progresso(); }; });
+  box.querySelectorAll('.pd').forEach(function(el){ el.onclick = function(){ if (S.enviado) return; var r = S.resp[el.dataset.q] || {}; r[el.dataset.i] = parseInt(el.dataset.k, 10); S.resp[el.dataset.q] = r; salvar(); marcar(); }; });
+  restaurar();
+}
+function restaurar(){
+  QUESTOES.forEach(function(q){
+    var r = S.resp[q.n]; if (r === undefined) return;
+    if (q.tipo === 'mc'){ var el = document.querySelector('input[name="r' + q.n + '"][value="' + r + '"]'); if (el) el.checked = true; }
+    else if (q.tipo === 'soma'){ var s = document.querySelector('.somain[data-q="' + q.n + '"]'); if (s) s.value = r; }
+    else if (q.tipo === 'sel' || q.tipo === 'vf'){ q.itens.forEach(function(it, i){ var e = document.querySelector('select[data-q="' + q.n + '"][data-i="' + i + '"]'); if (e && r[i] !== undefined) e.value = r[i]; }); }
+    else if (q.tipo === 'disc'){ q.itens.forEach(function(it, i){ var e = document.querySelector('textarea[data-q="' + q.n + '"][data-i="' + i + '"]'); if (e && r[i] !== undefined) e.value = r[i]; }); }
+  });
+  marcar();
+}
+function marcar(){
+  document.querySelectorAll('.alt').forEach(function(l){ var sel = S.resp[l.dataset.q] === l.dataset.id; l.classList.toggle('on', sel); l.querySelector('.mk').textContent = sel ? 'X' : ' '; });
+  document.querySelectorAll('.pd').forEach(function(p){ var r = S.resp[p.dataset.q]; p.classList.toggle('on', !!r && r[p.dataset.i] === parseInt(p.dataset.k, 10)); });
+  progresso();
+}
+function progresso(){
+  var n = QUESTOES.filter(respondida).length, el = document.getElementById('prog');
+  if (el) el.textContent = n + ' de ' + QUESTOES.length + ' questões respondidas';
+}
+
+/* ---- envio ---- */
+function enviar(){
+  if (S.enviado) return;
+  var falta = QUESTOES.filter(function(q){ return !respondida(q); }).map(function(q){ return q.n; });
+  if (falta.length){
+    modal('<h3>Ainda faltam ' + falta.length + ' questão(ões)</h3><p>Questões sem resposta completa: <b>' + falta.join(', ') + '</b>.</p><p>Na prova de verdade, questão em branco vale zero. Quer voltar e completar?</p>',
+      [{t:'Voltar e completar', cls:'ouro', fn: function(){ var e = document.getElementById('q' + falta[0]); if (e) e.scrollIntoView(); }}, {t:'Enviar mesmo assim', cls:'verm', fn: confirmarEnvio}]);
+  } else confirmarEnvio();
+}
+function confirmarEnvio(){
+  var r = resultado();
+  S.enviado = true; S.enviadoEm = agoraISO(); S.acertos = r.acertos;
+  if (!S.codigo || S.codigoAcertos !== r.acertos){ S.codigo = gerarCodigo(r.acertos); S.codigoAcertos = r.acertos; }
+  S.concluido = true; if (!S.concluidoEm) S.concluidoEm = agoraISO();
+  salvar(); travar(); mostrarResultado();
+  var box = document.getElementById('resultado'); if (box) box.scrollIntoView();
+}
+function travar(){
+  document.querySelectorAll('#questoes input, #questoes select, #questoes textarea').forEach(function(e){ e.disabled = true; });
+  document.body.classList.add('enviado');
+  var b = document.getElementById('btnEnviar'); if (b){ b.disabled = true; b.textContent = '✅ Simulado enviado'; }
+}
+function mostrarResultado(){
+  var r = resultado(), box = document.getElementById('resultado');
+  var h = '<h2>🪞 Espelho Final enviado!</h2>' +
+    '<p>Você acertou <b>' + r.acertos + ' de ' + r.nObj + '</b> questões objetivas — <b>' + num(r.notaObj) + '</b> de ' + num(r.totObj) + ' pontos.</p>' +
+    '<p>As 4 discursivas (questões 11, 19, 20 e 23, valendo ' + num(r.totDisc) + ') são corrigidas por um adulto com a resposta modelo do gabarito' +
+    (r.pendentes ? ' — <b>' + r.pendentes + ' ainda sem correção</b>.' : ': <b>' + num(r.notaDisc) + '</b> ponto(s). Nota total: <b>' + num(r.notaObj + r.notaDisc) + '</b> de 10,0.') + '</p>' +
+    '<div class="codigo">Seu código: <b id="codigoTxt">' + S.codigo + '</b></div>' +
+    '<p>Anote o código e mostre para um adulto. Ele abre o gabarito comentado aqui embaixo e o relatório na página inicial.</p>';
+  if (!S.gabaritoAberto){
+    h += '<p><input id="codIn" placeholder="Digite o código (SIM-…)" autocomplete="off"> <button class="btn ouro" id="btnGab">🔓 Abrir gabarito</button></p><p id="codMsg"></p>';
+  }
+  h += '<p><a class="btn" href="index.html">🏠 Voltar ao início</a> <a class="btn" href="resumo.html">🗺️ Rever o Resumo</a></p>';
+  box.innerHTML = h; box.style.display = 'block';
+  var bg = document.getElementById('btnGab');
+  if (bg) bg.onclick = function(){
+    var v = (document.getElementById('codIn').value || '').trim().toUpperCase();
+    if (v === S.codigo || v === 'PAIS-77'){ S.gabaritoAberto = true; salvar(); mostrarResultado(); gabarito(); }
+    else document.getElementById('codMsg').innerHTML = '<span class="bad">Código não confere. Confira as letras e os números.</span>';
+  };
+  if (S.gabaritoAberto) gabarito();
+}
+
+/* ---- gabarito comentado ---- */
+function gabarito(){
+  QUESTOES.forEach(function(q){
+    var g = document.getElementById('gab' + q.n), h = '<div class="gtit">📋 Gabarito comentado</div>', r = S.resp[q.n];
+    if (q.tipo === 'mc'){
+      q.ordem.forEach(function(a, i){
+        var cert = a.id === q.certaId, marc = r === a.id;
+        h += '<div class="g ' + (cert ? 'gc' : 'ge') + '"><b>' + LETRAS[i] + ')</b> ' + a.t + (marc ? ' <span class="tag">sua resposta</span>' : '') + '<div class="gx">' + (cert ? '✅ ' : '✖ ') + a.exp + '</div></div>';
+      });
+    } else if (q.tipo === 'soma'){
+      q.itens.forEach(function(it){ h += '<div class="g ' + (it.ok ? 'gc' : 'ge') + '"><b>' + (it.v < 10 ? '0' : '') + it.v + '</b> ' + it.t + '<div class="gx">' + it.exp + '</div></div>'; });
+      h += '<p>Soma correta: <b>' + (q.resp < 10 ? '0' : '') + q.resp + '</b> · sua soma: <b>' + (r === undefined || r === '' ? '—' : r) + '</b></p>';
+    } else if (q.tipo === 'sel' || q.tipo === 'vf'){
+      q.itens.forEach(function(it, i){
+        var certa = q.tipo === 'vf' ? (it.ok ? 'V' : 'F') : it.ans, sua = r && r[i] ? r[i] : '—', ok = sua === certa;
+        h += '<div class="g ' + (ok ? 'gc' : 'ge') + '">( <b>' + esc(certa) + '</b> ) ' + esc(it.t) + ' <span class="tag">sua: ' + esc(sua) + '</span><div class="gx">' + it.exp + '</div></div>';
+      });
+    } else if (q.tipo === 'click'){
+      q.itens.forEach(function(it, i){
+        var sua = r && r[i] !== undefined ? it.pd[r[i]] : '—', ok = r && r[i] === it.ans;
+        h += '<div class="g ' + (ok ? 'gc' : 'ge') + '">' + LETRAS[i] + ') vocativo: <b>' + esc(it.pd[it.ans].replace(/[,!?.]/g, '').trim()) + '</b> <span class="tag">você tocou: ' + esc(String(sua).replace(/[,!?.]/g, '').trim()) + '</span><div class="gx">' + it.exp + '</div></div>';
+      });
+    } else if (q.tipo === 'disc'){
+      var c = S.disc[q.n] || {};
+      q.itens.forEach(function(it, i){
+        h += '<div class="g gm"><div>' + esc(it.t) + '</div><div>✍️ Resposta do aprendiz: <i>' + esc(r && r[i] ? r[i] : '(em branco)') + '</i></div><div class="gx">✅ Resposta modelo: <b>' + it.modelo + '</b>' + (it.crit ? '<br>O que conferir: ' + it.crit : '') + '</div>' +
+          '<div class="mae">Correção do adulto: <button class="btn peq' + (c[i] === 'c' ? ' verde' : '') + '" data-dq="' + q.n + '" data-di="' + i + '" data-dv="c">✔ Certo</button> <button class="btn peq' + (c[i] === 'm' ? ' ouro' : '') + '" data-dq="' + q.n + '" data-di="' + i + '" data-dv="m">◐ Metade</button> <button class="btn peq' + (c[i] === 'e' ? ' verm' : '') + '" data-dq="' + q.n + '" data-di="' + i + '" data-dv="e">✘ Errado</button></div></div>';
+      });
+      if (q.critGeral) h += '<p class="gx">O que conferir em todos os itens: ' + q.critGeral + '</p>';
+    }
+    var f = fracao(q);
+    h += '<div class="gres">' + (f === null ? '⏳ aguardando correção do adulto' : (f === 1 ? '✅ ' : (f > 0 ? '◐ ' : '✖ ')) + num(q.pts * f) + ' de ' + num(q.pts)) + '</div>';
+    g.innerHTML = h; g.style.display = 'block';
+  });
+  document.querySelectorAll('[data-dq]').forEach(function(b){ b.onclick = function(){ var c = S.disc[b.dataset.dq] || {}; c[b.dataset.di] = b.dataset.dv; S.disc[b.dataset.dq] = c; salvar(); mostrarResultado(); }; });
+}
+
+/* ---- barra de salvamento ---- */
+function zerarSimulado(){
+  modal('<h3>🗑️ Zerar o Simulado?</h3><p>Apaga as respostas e o código deste Simulado. A trilha continua destravada.</p>',
+    [{t:'Cancelar'}, {t:'Zerar', cls:'verm', fn: function(){ var keep = { concluido: S.concluido, concluidoEm: S.concluidoEm }; S = { resp:{}, disc:{} }; if (keep.concluido){ S.concluido = true; S.concluidoEm = keep.concluidoEm; } salvar(); location.reload(); }}]);
+}
+
+function iniciar(){
+  if (!simuladoAberto()){
+    document.getElementById('lockCover').classList.add('on');
+    modal('<h3>🔒 Esta etapa ainda está trancada</h3><p>Para abrir o Simulado, conclua o <b>Resumo de Revisão</b>: leia até o fim e toque em “✅ Li o resumo até o fim”.</p>', [{t:'Voltar ao início', cls:'ouro', href:'index.html', manter:true}]);
+    return;
+  }
+  render();
+  if (S.salvoEm){ var el = document.getElementById('stSalvo'); if (el) el.textContent = '💾 Salvo em ' + fmtData(S.salvoEm); }
+  if (S.enviado){ travar(); mostrarResultado(); }
+  document.getElementById('btnEnviar').onclick = enviar;
+}
+
+iniciar();
+</script>
+</body>
+</html>

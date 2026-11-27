@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resumo de Revisão · Oficina dos Espelhos</title>
+<style>
+:root{--bg:#0f1420;--bg2:#161d2d;--card:#1b2436;--line:#2c3850;--prata:#d7dee8;--prata2:#9fb0c6;--ouro:#e2b65a;--ouro2:#f3d48f;--verde:#4fd18b;--verm:#ef5f67;--azul:#7fb3ff;--laranja:#f39a4b}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(1200px 600px at 80% -10%,#1d2a44 0%,transparent 60%),radial-gradient(900px 500px at -10% 20%,#1a2238 0%,transparent 55%),var(--bg);color:var(--prata);font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;font-size:18px;line-height:1.6}
+a{color:var(--ouro2)}
+.wrap{max-width:980px;margin:0 auto;padding:18px 16px 80px}
+h1,h2,h3{font-family:Georgia,"Palatino Linotype",serif;line-height:1.25}
+h1{font-size:2rem;margin:.2em 0}
+h2{font-size:1.45rem;margin:.2em 0 .5em}
+h3{font-size:1.15rem;margin:.8em 0 .3em;color:var(--ouro2)}
+.topo{background:linear-gradient(135deg,#1c2740,#111827);border:1px solid var(--line);border-radius:22px;padding:22px 20px;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.topo:before{content:"";position:absolute;inset:-40% -10% auto auto;width:340px;height:340px;background:conic-gradient(from 200deg,transparent,rgba(215,222,232,.18),transparent 40%);border-radius:50%;filter:blur(2px)}
+.topo .kicker{color:var(--ouro);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:.8rem}
+.topo p{margin:.4em 0;color:var(--prata2)}
+.moldura{border:3px solid var(--ouro);border-radius:18px;padding:3px}
+.moldura>.inner{border:1px solid rgba(226,182,90,.4);border-radius:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin:16px 0;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.narrador{background:rgba(127,179,255,.08);border-left:4px solid var(--azul);border-radius:10px;padding:10px 14px;margin:12px 0;font-style:italic;color:#c9dbf5}
+.postit{background:#fbe78a;color:#3a2f05;border-radius:4px 14px 6px 12px;padding:12px 14px;margin:12px 0;box-shadow:3px 4px 0 rgba(0,0,0,.35);transform:rotate(-.6deg);font-size:.97rem}
+.postit b{color:#5a3d00}
+.pegadinha{background:rgba(239,95,103,.1);border:1px solid rgba(239,95,103,.55);border-left:6px solid var(--verm);border-radius:12px;padding:10px 14px;margin:12px 0}
+.pegadinha .tt{color:#ff9aa0;font-weight:800}
+.trinca{background:rgba(243,154,75,.08);border:1px dashed var(--laranja);border-radius:12px;padding:10px 14px;margin:12px 0}
+.trinca .tt{color:var(--laranja);font-weight:800}
+.ok{color:var(--verde)}.bad{color:var(--verm)}
+.selo{display:inline-block;border-radius:999px;padding:2px 10px;font-size:.78rem;font-weight:800;margin-left:6px;vertical-align:middle;white-space:nowrap}
+.s-r{background:rgba(239,95,103,.18);color:#ff9aa0;border:1px solid rgba(239,95,103,.6)}
+.s-o{background:rgba(243,154,75,.16);color:#ffc08a;border:1px solid rgba(243,154,75,.6)}
+.s-y{background:rgba(226,182,90,.15);color:var(--ouro2);border:1px solid rgba(226,182,90,.55)}
+.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#24304a;color:var(--prata);border-radius:12px;padding:10px 16px;font-size:1rem;font-weight:700;cursor:pointer;text-decoration:none;font-family:inherit}
+.btn:hover{filter:brightness(1.15)}
+.btn[disabled]{opacity:.45;cursor:not-allowed;filter:none}
+.btn.ouro{background:linear-gradient(180deg,#f0c86e,#c9963a);color:#2a1d02;border-color:#e2b65a}
+.btn.verde{background:linear-gradient(180deg,#5fe09a,#2fa866);color:#04210f;border-color:#4fd18b}
+.btn.verm{background:linear-gradient(180deg,#f2737a,#c9414a);color:#fff;border-color:#ef5f67}
+.btn.peq{padding:6px 10px;font-size:.88rem;border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:.93rem}
+th,td{border:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top}
+th{background:#202b42;color:var(--ouro2)}
+tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.tabwrap{overflow-x:auto}
+.ex{background:#131a29;border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:6px 0;font-family:Georgia,serif}
+.ex u{text-decoration-color:var(--ouro);text-decoration-thickness:2px}
+mark{background:rgba(226,182,90,.25);color:#fff1cf;border-radius:4px;padding:0 3px}
+.savebar{position:sticky;bottom:0;z-index:30;background:rgba(15,20,32,.96);border-top:1px solid var(--line);padding:8px 12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;font-size:.85rem;backdrop-filter:blur(4px)}
+.savebar .st{color:var(--prata2);margin-right:6px}
+#modalBack{position:fixed;inset:0;background:rgba(5,8,14,.82);z-index:1000;display:none;align-items:center;justify-content:center;padding:16px}
+#modalBack.on{display:flex}
+#modalBox{background:#1b2436;border:2px solid var(--ouro);border-radius:18px;max-width:520px;width:100%;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+#modalBox .acts{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:14px}
+#lockCover{position:fixed;inset:0;background:#0b0f18;z-index:900;display:none}
+#lockCover.on{display:block}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:#202b42;border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:.88rem;color:var(--prata);text-decoration:none}
+.foot{text-align:center;color:var(--prata2);font-size:.9rem;margin-top:30px}
+@media (max-width:600px){body{font-size:17px}h1{font-size:1.6rem}.card{padding:14px}}
+</style>
+<script>
+/* ===== Oficina dos Espelhos — núcleo comum (armazenamento, modal, trilha) ===== */
+var KIT = {
+  slug: 'oficespelhos8',
+  nome: 'Oficina dos Espelhos',
+  keys: { resumo: 'oficespelhos8_resumo_v1', simulado: 'oficespelhos8_simulado_v1', trilha: 'oficespelhos8_trilha_v1' }
+};
+var MEM = {};
+function lsGet(k){ try{ var v = window.localStorage.getItem(k); if (v !== null) return v; }catch(e){} return Object.prototype.hasOwnProperty.call(MEM,k) ? MEM[k] : null; }
+function lsSet(k,v){ MEM[k] = v; try{ window.localStorage.setItem(k,v); }catch(e){} }
+function lsDel(k){ delete MEM[k]; try{ window.localStorage.removeItem(k); }catch(e){} }
+function getJ(k){ try{ var s = lsGet(k); return s ? JSON.parse(s) : null; }catch(e){ return null; } }
+function setJ(k,o){ lsSet(k, JSON.stringify(o)); }
+function kitKeys(){
+  var out = [], p = KIT.slug + '_';
+  try{ for (var i = 0; i < window.localStorage.length; i++){ var k = window.localStorage.key(i); if (k && k.indexOf(p) === 0) out.push(k); } }catch(e){}
+  for (var m in MEM){ if (m.indexOf(p) === 0 && out.indexOf(m) < 0) out.push(m); }
+  return out;
+}
+function agoraISO(){ return new Date().toISOString(); }
+function fmtData(iso){
+  if (!iso) return '—';
+  try{ var d = new Date(iso); function z(n){ return (n<10?'0':'')+n; }
+    return z(d.getDate())+'/'+z(d.getMonth()+1)+'/'+d.getFullYear()+' às '+z(d.getHours())+':'+z(d.getMinutes()); }catch(e){ return iso; }
+}
+function esc(s){ return String(s).replace(/[&<>"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+/* ---- modal próprio (nunca alert/confirm/prompt) ---- */
+function modal(html, botoes){
+  var back = document.getElementById('modalBack');
+  if (!back){ back = document.createElement('div'); back.id = 'modalBack'; back.innerHTML = '<div id="modalBox"><div id="modalTxt"></div><div class="acts" id="modalActs"></div></div>'; document.body.appendChild(back); }
+  document.getElementById('modalTxt').innerHTML = html;
+  var acts = document.getElementById('modalActs'); acts.innerHTML = '';
+  (botoes || [{t:'Ok', cls:'ouro'}]).forEach(function(b){
+    var el = document.createElement(b.href ? 'a' : 'button');
+    el.className = 'btn ' + (b.cls || ''); el.textContent = b.t;
+    if (b.href) el.href = b.href;
+    el.onclick = function(){ if (!b.manter) back.classList.remove('on'); if (b.fn) b.fn(); };
+    acts.appendChild(el);
+  });
+  back.classList.add('on');
+}
+
+/* ---- trilha: Resumo → Simulado (Diagnóstico sempre aberto) ---- */
+function estadoTrilha(){
+  var r = getJ(KIT.keys.resumo) || {}, s = getJ(KIT.keys.simulado) || {}, t = getJ(KIT.keys.trilha) || {};
+  return { resumo: !!r.concluido, resumoEm: r.concluidoEm || null, simulado: !!s.concluido, simuladoEm: s.concluidoEm || null,
+           liberado: !!t.liberadoPelosPais, liberadoEm: t.liberadoEm || null, tudoAberto: (!!r.concluido && !!s.concluido) || !!t.liberadoPelosPais };
+}
+function simuladoAberto(){ var e = estadoTrilha(); return e.resumo || e.simulado || e.liberado; }
+
+/* ---- exportar / importar ---- */
+function exportarKit(nomeArq){
+  var dados = { kit: KIT.nome, slug: KIT.slug, exportadoEm: agoraISO(), chaves: {} };
+  kitKeys().forEach(function(k){ var v = getJ(k); dados.chaves[k] = v !== null ? v : lsGet(k); });
+  var blob = new Blob([JSON.stringify(dados, null, 2)], {type:'application/json'});
+  var a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = (nomeArq || KIT.slug) + '_' + new Date().toISOString().slice(0,10) + '.json';
+  document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500);
+}
+function importarKit(depois){
+  var inp = document.createElement('input'); inp.type = 'file'; inp.accept = '.json,application/json';
+  inp.onchange = function(){
+    var f = inp.files && inp.files[0]; if (!f) return;
+    var rd = new FileReader();
+    rd.onload = function(){
+      try{
+        var d = JSON.parse(rd.result); var n = 0;
+        if (!d || !d.chaves) throw new Error('formato');
+        Object.keys(d.chaves).forEach(function(k){ if (k.indexOf(KIT.slug + '_') === 0){ var v = d.chaves[k]; lsSet(k, typeof v === 'string' ? v : JSON.stringify(v)); n++; } });
+        modal('<h3>📤 Progresso importado</h3><p>' + n + ' registro(s) deste kit foram carregados.</p>', [{t:'Ok', cls:'ouro', fn: function(){ if (depois) depois(); }}]);
+      }catch(e){ modal('<h3>Não deu certo</h3><p>Esse arquivo não parece ser um progresso exportado deste kit.</p>'); }
+    };
+    rd.readAsText(f);
+  };
+  inp.click();
+}
+</script>
+</head>
+<body>
+<style>
+.esp{position:relative;background:linear-gradient(160deg,#1e2940,#172033);border:3px solid var(--ouro);border-radius:22px;padding:4px;margin:26px 0;box-shadow:0 10px 26px rgba(0,0,0,.35)}
+.esp>.vidro{border:1px solid rgba(226,182,90,.4);border-radius:17px;padding:18px;background:linear-gradient(115deg,rgba(255,255,255,.05),transparent 35%,rgba(255,255,255,.03) 60%,transparent)}
+.esp .num{font-size:.8rem;color:var(--ouro);font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.naprova{font-size:.9rem;color:var(--prata2);background:#141b2a;border-radius:10px;padding:6px 10px;margin:6px 0 10px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:700px){.cols{grid-template-columns:1fr}}
+.reflexo{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;margin:10px 0}
+.reflexo .lado{background:#131a29;border:1px solid var(--line);border-radius:12px;padding:10px;font-family:Georgia,serif}
+.reflexo .seta{font-size:1.6rem;color:var(--ouro)}
+@media (max-width:700px){.reflexo{grid-template-columns:1fr}.reflexo .seta{text-align:center;transform:rotate(90deg)}}
+.tag-s{color:#9fd3ff;font-weight:700}.tag-v{color:var(--ouro2);font-weight:700}.tag-a{color:#ffb3b8;font-weight:700}
+.flips{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin:12px 0}
+.flip{perspective:900px;height:150px;cursor:pointer}
+.flip .in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.flip.on .in{transform:rotateY(180deg)}
+.flip .fr,.flip .vs{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:12px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:.95rem}
+.flip .fr{background:#24304a;border:2px solid #4b5d80}
+.flip .fr:after{content:"toque para virar ↻";position:absolute;bottom:6px;font-size:.7rem;color:var(--prata2)}
+.flip .vs{background:#123326;border:2px solid var(--verde);transform:rotateY(180deg);color:#d8ffe9}
+.indice a{margin:3px}
+#fimBox{text-align:center;border:2px solid var(--ouro)}
+#barraLeitura{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,var(--ouro),var(--verde));z-index:50;width:0}
+</style>
+<div id="barraLeitura"></div>
+<div class="wrap">
+  <header class="topo">
+    <div class="kicker">🪞 Oficina dos Espelhos · etapa 1 de 2</div>
+    <h1>🗺️ Resumo de Revisão — os 9 Espelhos</h1>
+    <p>Recuperação de Língua Portuguesa · 8º ano. Tudo aqui saiu das <b>duas provas corrigidas</b> (23/09 e 28/10): as regras são explicadas a partir das próprias questões, e o “Onde trincou” mostra exatamente o que deu errado.</p>
+    <p><a class="btn peq" href="index.html">← Início</a> <a class="btn peq" href="diagnostico.html">🔍 Laudo das Trincas</a></p>
+  </header>
+
+  <div class="narrador">Nota do espelheiro: na oficina, a gente não joga fora o espelho trincado — a gente acha a trinca, dá polimento, e ele volta a refletir certinho. Os espelhos com selo 🔴 são os que mais trincaram nas provas: polir esses primeiro.</div>
+
+  <div class="card indice"><b>Espelhos desta oficina:</b><div class="chips" style="margin-top:8px">
+    <a class="chip" href="#e1">1 · Qual é a voz? 🟠</a><a class="chip" href="#e2">2 · Passiva analítica 🔴</a><a class="chip" href="#e3">3 · Agente da passiva 🔴</a>
+    <a class="chip" href="#e4">4 · Passiva sintética 🔴</a><a class="chip" href="#e5">5 · As funções do “se” 🟠</a><a class="chip" href="#e6">6 · Tipos de aposto 🔴</a>
+    <a class="chip" href="#e7">7 · Vocativo e a vírgula 🟠</a><a class="chip" href="#e8">8 · Os porquês 🟡</a><a class="chip" href="#e9">9 · Interpretação 🔴</a></div>
+    <p style="margin:10px 0 0;font-size:.9rem;color:var(--prata2)">🃏 Cartas viradas: <b id="contaFlip">0</b> de <b id="totFlip">0</b></p>
+  </div>
+
+  <!-- 1 -->
+  <section class="esp" id="e1"><div class="vidro">
+    <div class="num">Espelho 1</div><h2>Qual é a voz do verbo? <span class="selo s-o">🟠 reforçar</span></h2>
+    <div class="naprova">Na prova de 23/09: questões 1a, 1b, 2a, 3a, 4, 7a e 8a.</div>
+    <p>A pergunta que resolve tudo: <b>o sujeito FAZ a ação ou SOFRE a ação?</b></p>
+    <div class="tabwrap"><table>
+      <tr><th>Voz</th><th>Como reconhecer</th><th>Exemplo da prova</th></tr>
+      <tr><td><b>Ativa</b></td><td>O sujeito faz a ação.</td><td>“<span class="tag-s">A professora</span> <span class="tag-v">apresentava</span> aos alunos a resposta correta.”<br>“<span class="tag-s">Coreia do Sul</span> <span class="tag-v">lança</span> sonda lunar.”</td></tr>
+      <tr><td><b>Passiva analítica</b></td><td>Verbo <b>ser</b> + particípio; quem fez a ação pode aparecer com <b>por/pelo/pela</b>.</td><td>“<span class="tag-s">Nova reserva de água</span> <span class="tag-v">é encontrada</span> no Cantareira.”</td></tr>
+      <tr><td><b>Passiva sintética</b></td><td>Verbo + <b>se</b> (partícula apassivadora) + o que sofre a ação.</td><td>“E que sempre <span class="tag-v">se dirá</span>.” · “<span class="tag-v">Venderam-se</span> várias casas.”</td></tr>
+      <tr><td><b>Reflexiva</b></td><td>O sujeito faz a ação nele mesmo.</td><td>“[Nome] <span class="tag-v">se cortou</span> com a tesoura.”</td></tr>
+    </table></div>
+    <div class="trinca"><span class="tt">🔧 Onde trincou (23/09, questão 3a):</span> em “A professora apresentava aos alunos a resposta correta”, a resposta foi “voz passiva analítica”. Mas a professora é quem <b>apresenta</b> — ela faz a ação. Não há verbo <i>ser</i> + particípio. É <b>voz ativa</b>.</div>
+    <div class="pegadinha"><span class="tt">⚠️ Pegadinha que você já venceu:</span> “Duvidou-se da fala dos acusados” está na <b>voz ativa</b> (questão 4, certa). Aqui o “se” não forma passiva: “duvidar <b>de</b>” pede preposição, e o sujeito fica indeterminado (Espelho 5).</div>
+    <div class="flips">
+      <div class="flip" data-id="f1a"><div class="in"><div class="fr">“No verão, as garotas leram livros de romance policial.” — qual é a voz?</div><div class="vs">Voz ativa: as garotas fazem a ação de ler.</div></div></div>
+      <div class="flip" data-id="f1b"><div class="in"><div class="fr">Qual é o “teste dos dois segundos” para achar a voz?</div><div class="vs">Pergunte: o sujeito faz ou sofre a ação? Tem ser + particípio? Tem “se” com o verbo?</div></div></div>
+    </div>
+  </div></section>
+
+  <!-- 2 -->
+  <section class="esp" id="e2"><div class="vidro">
+    <div class="num">Espelho 2</div><h2>Montar a voz passiva analítica <span class="selo s-r">🔴 prioridade máxima</span></h2>
+    <div class="naprova">Na prova de 23/09: questões 1c, 2b (anulada), 3b, 7b e 8c.</div>
+    <p>A passiva é o <b>reflexo</b> da ativa no espelho: o que estava no fim vai para a frente.</p>
+    <div class="reflexo">
+      <div class="lado"><b>ATIVA</b><br><span class="tag-s">Coreia do Sul</span> <span class="tag-v">lança</span> <u>sonda lunar</u>.</div>
+      <div class="seta">⇄</div>
+      <div class="lado"><b>PASSIVA ANALÍTICA</b><br><u>Sonda lunar</u> <span class="tag-v">é lançada</span> <span class="tag-a">pela Coreia do Sul</span>.</div>
+    </div>
+    <h3>Os 3 passos</h3>
+    <ol>
+      <li>O <b>objeto</b> (o que sofre a ação) vira o <b>sujeito paciente</b> e vai para o começo.</li>
+      <li>O verbo vira <b>ser + particípio</b>, com <b>ser no mesmo tempo</b> do verbo original e concordando com o novo sujeito.</li>
+      <li>Quem fazia a ação vira o <b>agente da passiva</b>, com <b>por / pelo / pela</b> (Espelho 3).</li>
+    </ol>
+    <div class="tabwrap"><table>
+      <tr><th>Ativa (prova)</th><th>Passiva analítica</th></tr>
+      <tr><td>Nasa <b>encontra</b> sinal de possível vida microbiana antiga em Marte.</td><td>Sinal de possível vida microbiana antiga em Marte <b>é encontrado</b> pela Nasa.</td></tr>
+      <tr><td>A professora <b>apresentava</b> aos alunos a resposta correta.</td><td>A resposta correta <b>era apresentada</b> aos alunos pela professora.</td></tr>
+      <tr><td>(Eu) <b>Invento</b> algas cristalinas.</td><td>Algas cristalinas <b>são inventadas</b> por mim.</td></tr>
+    </table></div>
+    <div class="trinca"><span class="tt">🔧 Onde trincou:</span> (1c) “Invento algas cristalinas” virou “Algas cristalinas <b>eu invento</b>” — só a ordem mudou; o verbo continuou <i>invento</i> (ativa). Faltou o <b>ser + particípio</b>: “são inventadas”. (3b) Para “apresentava”, foi marcado “apresentou”, que é ativa e muda o tempo. O certo é “<b>era</b> apresentada” (apresent<b>ava</b> → <b>era</b>).</div>
+    <div class="postit"><b>Dica de prova:</b> o tempo do verbo <i>ser</i> copia o tempo do verbo original: <b>apresentava → era</b> apresentada · <b>lança → é</b> lançada · <b>invento → são</b> inventadas (plural, porque “algas” é plural).</div>
+    <div class="pegadinha"><span class="tt">⚠️ Concordância:</span> o particípio concorda com o sujeito paciente. “Sinal … é encontrad<b>o</b>” (sinal é masculino). Na prova a resposta “é encontrada” passou, mas o certinho é “encontrado”.</div>
+    <div class="flips">
+      <div class="flip" data-id="f2a"><div class="in"><div class="fr">“As garotas leram livros” → qual forma do verbo na passiva analítica?</div><div class="vs">“foram lidos” (leram → foram; “livros” é masculino plural). A questão 2b da prova foi anulada.</div></div></div>
+      <div class="flip" data-id="f2b"><div class="in"><div class="fr">Só trocar a ordem das palavras já faz a frase ficar passiva?</div><div class="vs">Não! Tem que aparecer ser + particípio: “são inventadas”, “é lançada”.</div></div></div>
+    </div>
+  </div></section>
+
+  <!-- 3 -->
+  <section class="esp" id="e3"><div class="vidro">
+    <div class="num">Espelho 3</div><h2>Quem é o agente da passiva? <span class="selo s-r">🔴 prioridade máxima</span></h2>
+    <div class="naprova">Na prova de 23/09: questões 1d e 7c.</div>
+    <p>O <b>agente da passiva</b> é <b>quem pratica a ação</b> numa frase passiva. Ele vem com <b>por, pelo, pela, pelos, pelas</b>.</p>
+    <div class="cols">
+      <div class="ex">Sonda lunar é lançada <span class="tag-a">pela Coreia do Sul</span>.</div>
+      <div class="ex">Sinal … é encontrado <span class="tag-a">pela Nasa</span>.</div>
+      <div class="ex">Algas cristalinas são inventadas <span class="tag-a">por mim</span>.</div>
+      <div class="ex">A resposta correta era apresentada <span class="tag-a">pela professora</span>.</div>
+    </div>
+    <div class="trinca"><span class="tt">🔧 Onde trincou (1d):</span> a resposta foi “algas cristalinas”. Mas algas cristalinas é o que <b>é inventado</b> — é o <b>sujeito paciente</b>. Quem inventa é o “eu” do poema: o agente é “<b>por mim</b>”. (7c) Foi escrito “Coreia do Sul” sem o “pela”; a marca da professora está pouco legível, então treine escrever o agente <b>completo</b>: “pela Coreia do Sul”.</div>
+    <div class="postit"><b>Truque:</b> o agente da passiva é o mesmo que era o <b>sujeito da ativa</b>. Se na ativa era “eu”, na passiva vira “<b>por mim</b>”.</div>
+    <div class="flips">
+      <div class="flip" data-id="f3a"><div class="in"><div class="fr">“Os ingressos foram vendidos pela escola.” Quem é o agente?</div><div class="vs">“pela escola” — foi a escola que vendeu.</div></div></div>
+      <div class="flip" data-id="f3b"><div class="in"><div class="fr">Sujeito paciente × agente: qual é qual?</div><div class="vs">Sujeito paciente = o que sofre a ação (vem antes do verbo). Agente = quem faz (vem com por/pelo/pela).</div></div></div>
+    </div>
+  </div></section>
+
+  <!-- 4 -->
+  <section class="esp" id="e4"><div class="vidro">
+    <div class="num">Espelho 4</div><h2>Montar a voz passiva sintética <span class="selo s-r">🔴 prioridade máxima</span></h2>
+    <div class="naprova">Na prova de 23/09: questões 2c, 3c, 5 (a–e) e 9.</div>
+    <p>A passiva sintética é a passiva “enxuta”: <b>verbo + se + sujeito paciente</b>. Quem fazia a ação some da frase.</p>
+    <div class="reflexo">
+      <div class="lado"><b>ATIVA</b><br>Os garotos <span class="tag-v">abriram</span> <u>os portões</u>.</div>
+      <div class="seta">⇄</div>
+      <div class="lado"><b>PASSIVA SINTÉTICA</b><br><span class="tag-v">Abriram-se</span> <u>os portões</u>.</div>
+    </div>
+    <div class="tabwrap"><table>
+      <tr><th>Frase da prova (questão 5)</th><th>Modelo: verbo + se + sujeito paciente</th></tr>
+      <tr><td>Os garotos abriram os portões.</td><td><b>Abriram-se</b> os portões.</td></tr>
+      <tr><td>Eles contaram uma história de terror.</td><td><b>Contou-se</b> uma história de terror.</td></tr>
+      <tr><td>Eles contavam histórias de terror.</td><td><b>Contavam-se</b> histórias de terror.</td></tr>
+      <tr><td>O mensageiro entregou as cartas ontem.</td><td><b>Entregaram-se</b> as cartas ontem.</td></tr>
+      <tr><td>Eles encontraram água no Cantareira.</td><td><b>Encontrou-se</b> água no Cantareira.</td></tr>
+    </table></div>
+    <div class="trinca"><span class="tt">🔧 Onde trincou (questão 5 inteira):</span> as cinco respostas começaram pelo antigo objeto: “Os portões abriram-se”, “As cartas entregaram-se ontem”… e as cinco levaram X. A professora não escreveu o motivo, mas todos os exemplos de passiva sintética da própria prova começam pelo <b>verbo</b>: “Venderam-se várias casas”, “Alugam-se quartos para estudantes”, “Entregam-se encomendas”, “Compra-se ouro”. Na recuperação, use sempre esse modelo.</div>
+    <div class="postit"><b>Concordância:</b> o verbo concorda com o sujeito paciente. Plural → verbo no plural: “Abri<b>ram</b>-se os portões”, “Contava<b>m</b>-se histórias”. Singular → singular: “Conto<b>u</b>-se uma história”, “Encontro<b>u</b>-se água”.</div>
+    <div class="pegadinha"><span class="tt">⚠️ Sujeito paciente inteiro:</span> na questão 2c e 3c você acertou escolhendo o termo completo (“livros de romance policial”, “a resposta correta”). Nunca corte o termo pela metade.</div>
+    <div class="flips">
+      <div class="flip" data-id="f4a"><div class="in"><div class="fr">“O carteiro entregou os pacotes.” → passiva sintética</div><div class="vs">Entregaram-se os pacotes.</div></div></div>
+      <div class="flip" data-id="f4b"><div class="in"><div class="fr">“Eles vendiam bolos.” → passiva sintética</div><div class="vs">Vendiam-se bolos. (mesmo tempo: vendiam → vendiam-se)</div></div></div>
+    </div>
+  </div></section>
+
+  <!-- 5 -->
+  <section class="esp" id="e5"><div class="vidro">
+    <div class="num">Espelho 5</div><h2>As três funções do “se” <span class="selo s-o">🟠 reforçar</span></h2>
+    <div class="naprova">Na prova de 23/09: questões 4, 6b, 6c e 9 (8 de 10).</div>
+    <div class="tabwrap"><table>
+      <tr><th>Número na prova</th><th>Função</th><th>Como reconhecer</th><th>Exemplos da prova</th></tr>
+      <tr><td>1</td><td><b>Partícula apassivadora</b></td><td>Verbo <b>sem</b> preposição + o que sofre a ação. Dá para trocar por <i>ser + particípio</i>. O verbo concorda.</td><td>Venderam-se várias casas (= várias casas foram vendidas) · Compra-se ouro · Alugam-se quartos para estudantes · Entregam-se encomendas · Poupou-se dinheiro…</td></tr>
+      <tr><td>2</td><td><b>Pronome reflexivo</b></td><td>A pessoa faz a ação <b>em si mesma</b>.</td><td>[Nome] se cortou com a tesoura · [Nome] se furou em um alfinete</td></tr>
+      <tr><td>3</td><td><b>Índice de indeterminação do sujeito</b></td><td>Verbo <b>com preposição</b> (de, em…) ou sem complemento. Não dá para trocar por <i>ser + particípio</i>. Verbo sempre no singular.</td><td>Morre-se de fome e sede naquela região · Reclama-se de tudo · Duvidou-se da fala dos acusados</td></tr>
+    </table></div>
+    <div class="trinca"><span class="tt">🔧 Onde trincou:</span> “Fala-se muito <b>do</b> coronavírus” foi numerada como 1. Mas “falar <b>de</b>” tem preposição → é <b>3</b> (índice de indeterminação). Em “Levantou-se da cadeira” (6b) foram marcadas <b>duas</b> opções — marcar duas anula a questão.</div>
+    <div class="pegadinha"><span class="tt">❓ Ponto sem gabarito escrito:</span> em “Acreditava-se que tudo terminaria bem”, o número 3 levou X, mas a professora não escreveu qual número esperava. Na dúvida, pergunte à professora antes da prova. (Essa frase e “Levantou-se…” não entram no Simulado.)</div>
+    <div class="postit"><b>Teste rápido:</b> tem preposição logo depois do verbo (falar <b>de</b>, precisar <b>de</b>, confiar <b>em</b>)? → 3. Dá para dizer “… é/são + particípio”? → 1. A pessoa fez em si mesma? → 2.</div>
+    <div class="flips">
+      <div class="flip" data-id="f5a"><div class="in"><div class="fr">“Precisa-se de ajudantes.” Qual é o “se”?</div><div class="vs">3 — índice de indeterminação (precisar DE).</div></div></div>
+      <div class="flip" data-id="f5b"><div class="in"><div class="fr">“Consertam-se bicicletas.” Qual é o “se”?</div><div class="vs">1 — partícula apassivadora (bicicletas são consertadas).</div></div></div>
+    </div>
+  </div></section>
+
+  <!-- 6 -->
+  <section class="esp" id="e6"><div class="vidro">
+    <div class="num">Espelho 6</div><h2>Os tipos de aposto <span class="selo s-r">🔴 prioridade máxima</span></h2>
+    <div class="naprova">Na prova de 28/10: questões 2, 5, 7, 8, 9 e 13.</div>
+    <p>A própria prova definiu: o <b>aposto</b> é um termo acessório que se relaciona com o termo que vem antes, para <b>explicar, especificar, enumerar ou recapitular</b>. Ele é a <b>moldura</b> do espelho: fica em volta de um termo e diz algo sobre ele.</p>
+    <div class="tabwrap"><table>
+      <tr><th>Tipo</th><th>Como reconhecer</th><th>Exemplo no modelo da prova</th></tr>
+      <tr><td><b>Explicativo</b></td><td>Entre vírgulas ou travessões; explica quem/o que é.</td><td>“Jaguaruna, <b>a cidade vizinha</b>, é a maior produtora de melancia da região.” · “Aquela mulher – <b>vizinha do [nome]</b> – ligou…”</td></tr>
+      <tr><td><b>Especificativo</b></td><td><b>Sem vírgula</b>, colado ao substantivo; diz <b>qual</b>.</td><td>“A aluna <b>[nome]</b> passou no vestibular.” · “O professor <b>[nome]</b> tem dois filhos.”</td></tr>
+      <tr><td><b>Enumerativo</b></td><td>Uma <b>lista</b> que vem <b>depois</b> (quase sempre após dois-pontos).</td><td>“Não preciso de mais nada: <b>dinheiro, poder ou fama</b>.” · “…três características: <b>dedicação, respeito e interesse</b>.”</td></tr>
+      <tr><td><b>Recapitulativo (resumitivo)</b></td><td>Uma palavra que <b>resume</b> a lista que veio <b>antes</b>: tudo, isso, todos, todas…</td><td>“Prosperidade, segurança e alegria, <b>isso</b> é o que eu quero…” · “Geografia, Física e Química, <b>todas</b> são matérias importantes.”</td></tr>
+    </table></div>
+    <div class="reflexo">
+      <div class="lado"><b>ENUMERATIVO</b><br>palavra-resumo → <b>: lista</b><br><small>“três características: dedicação, respeito e interesse”</small></div>
+      <div class="seta">🪞</div>
+      <div class="lado"><b>RECAPITULATIVO</b><br><b>lista ,</b> → palavra-resumo<br><small>“Prosperidade, segurança e alegria, isso…”</small></div>
+    </div>
+    <div class="trinca"><span class="tt">🔧 Onde trincou:</span> (13) enumerativo e recapitulativo foram trocados — eles são o reflexo um do outro: no enumerativo a lista vem <b>depois</b>; no recapitulativo a lista vem <b>antes</b> e a palavra “isso/tudo/todas” resume. (7) explicativo e especificativo foram trocados: “Aquela mulher – vizinha do… –” tem travessões → <b>explicativo</b>; “O professor [nome]” não tem vírgula → <b>especificativo</b>. (2) foi escolhido um termo que vem depois do verbo “era” (“[Nome] era o único filho…”) — isso <b>não é aposto</b>, é o que se diz do sujeito.</div>
+    <div class="pegadinha"><span class="tt">⚠️ Aposto do objeto:</span> o aposto pode explicar qualquer termo, não só o sujeito. Em “Li [nome do livro], obra de [autor]”, o aposto explica o livro (o objeto). Na prova você acertou isso na questão 9… mas escreveu a letra errada na folha de respostas!</div>
+    <div class="postit"><b>Folha de respostas:</b> terminou a prova? Releia questão por questão e confira se a letra da folha é a mesma que você marcou. Na 28/10, isso custou 1,0 ponto.</div>
+    <div class="flips">
+      <div class="flip" data-id="f6a"><div class="in"><div class="fr">“Arroz, feijão e salada, tudo estava ótimo.” Que aposto é “tudo”?</div><div class="vs">Recapitulativo: resume a lista que veio antes.</div></div></div>
+      <div class="flip" data-id="f6b"><div class="in"><div class="fr">“O goleiro Davi defendeu.” Que aposto é “Davi”?</div><div class="vs">Especificativo: sem vírgula, diz qual goleiro.</div></div></div>
+      <div class="flip" data-id="f6c"><div class="in"><div class="fr">“Lucas era o caçula da família.” “o caçula” é aposto?</div><div class="vs">Não! Vem depois do verbo “era”: é o que se diz de Lucas.</div></div></div>
+    </div>
+  </div></section>
+
+  <!-- 7 -->
+  <section class="esp" id="e7"><div class="vidro">
+    <div class="num">Espelho 7</div><h2>Vocativo — e a vírgula que muda tudo <span class="selo s-o">🟠 reforçar</span></h2>
+    <div class="naprova">Na prova de 28/10: questões 3, 4, 6, 11 (5 de 5) e 12 (parcial).</div>
+    <p>A prova definiu: o <b>vocativo</b> é o termo usado para <b>interpelar ou chamar</b> o interlocutor. Ele fica separado por vírgula e pode aparecer no começo, no meio ou no fim.</p>
+    <div class="cols">
+      <div class="ex"><b>Mãe</b>, já posso tomar banho?</div>
+      <div class="ex">Venham almoçar, <b>amigos</b>!</div>
+      <div class="ex">Chegamos atrasados, <b>professora</b>.</div>
+      <div class="ex">Na tirinha da prova, o nome do filho e “<b>papai</b>” são vocativos.</div>
+    </div>
+    <div class="reflexo">
+      <div class="lado"><b>SUJEITO</b><br>Renata está lendo seu livro.<br><small>(ela é quem lê)</small></div>
+      <div class="seta">⇄</div>
+      <div class="lado"><b>VOCATIVO</b><br>Renata, está lendo seu livro?<br><small>(ela está sendo chamada)</small></div>
+    </div>
+    <h3>A vírgula muda o sentido (questão 12)</h3>
+    <div class="tabwrap"><table>
+      <tr><th>Frase</th><th>Quem é quem</th><th>Sentido</th></tr>
+      <tr><td>[Nome], minha filha segue meus conselhos.</td><td>[Nome] = <b>vocativo</b> · “minha filha” = <b>sujeito</b></td><td>Falo COM [Nome] e conto que a minha filha segue meus conselhos. (duas pessoas)</td></tr>
+      <tr><td>[Nome], minha filha, segue meus conselhos.</td><td>“minha filha” = <b>aposto</b> de [Nome]</td><td>Informo que [Nome], que é minha filha, segue meus conselhos. (uma pessoa)</td></tr>
+    </table></div>
+    <div class="trinca"><span class="tt">🔧 Onde trincou (12):</span> a frase B foi bem explicada. Na A, a resposta disse que alguém “está pedindo” para a pessoa seguir os conselhos — mas não há pedido: o nome é vocativo (a pessoa com quem se fala) e “minha filha” é o sujeito de “segue”. A resposta modelo da professora não está escrita na prova; esta é a leitura pela regra do vocativo.</div>
+    <div class="postit"><b>Como justificar na prova:</b> diga “Sim, há diferença”, explique a frase A (vocativo + sujeito) <b>e</b> a frase B (aposto). Explicar só uma vale metade.</div>
+    <div class="flips">
+      <div class="flip" data-id="f7a"><div class="in"><div class="fr">“Turma, a prova começa agora.” Qual é o vocativo?</div><div class="vs">“Turma” — é o grupo chamado.</div></div></div>
+      <div class="flip" data-id="f7b"><div class="in"><div class="fr">Para que serve o vocativo num discurso?</div><div class="vs">Para chamar e conquistar o público — como na reportagem da prova (questão 3, certa).</div></div></div>
+    </div>
+  </div></section>
+
+  <!-- 8 -->
+  <section class="esp" id="e8"><div class="vidro">
+    <div class="num">Espelho 8</div><h2>Os quatro porquês <span class="selo s-y">🟡 ajuste fino</span></h2>
+    <div class="naprova">Na prova de 28/10: questões 10, 14 e 15 — todas certas. É só manter o brilho!</div>
+    <div class="tabwrap"><table>
+      <tr><th>Forma</th><th>Quando usar</th><th>Exemplo da prova</th></tr>
+      <tr><td><b>por que</b></td><td>Pergunta (no início) ou quando dá para trocar por “por qual motivo”.</td><td>“<b>Por que</b> você me traiu dessa forma?” · “Ela podia me dizer <b>por que</b> estava indo embora…”</td></tr>
+      <tr><td><b>por quê</b></td><td>No <b>fim</b> da frase, antes de ponto.</td><td>“Eu só quero saber <b>por quê</b>.” · “…guardar meu carro na minha garagem <b>por quê</b>?”</td></tr>
+      <tr><td><b>porque</b></td><td>Resposta, explicação, causa.</td><td>“Vou chegar atrasado amanhã, <b>porque</b> tenho uma consulta médica.”</td></tr>
+      <tr><td><b>porquê</b></td><td>Substantivo, com artigo (o porquê).</td><td>“[Nome] ontem me explicou <b>o porquê</b>.” · “Ninguém compreendeu <b>o porquê</b> do comportamento do pai do menino.”</td></tr>
+    </table></div>
+    <div class="pegadinha"><span class="tt">⚠️ Lembrete da questão 10:</span> “<b>Porque</b> você fingiu que não me conhecia…?” estava errado: pergunta começa com “<b>Por que</b>”.</div>
+    <div class="flips">
+      <div class="flip" data-id="f8a"><div class="in"><div class="fr">“Você saiu cedo ____?”</div><div class="vs">por quê (fim de frase)</div></div></div>
+    </div>
+  </div></section>
+
+  <!-- 9 -->
+  <section class="esp" id="e9"><div class="vidro">
+    <div class="num">Espelho 9</div><h2>Interpretação: a gramática ajuda a ler <span class="selo s-r">🔴 prioridade máxima</span></h2>
+    <div class="naprova">Errou nas duas provas: 23/09 questões 11 e 12 · 28/10 questão 1. Acertou: 23/09 questão 10 e 28/10 questão 3.</div>
+    <p>Nessas provas, as questões de interpretação perguntam <b>o efeito</b> de um recurso de língua. Quase sempre a resposta está ligada ao conteúdo da própria prova.</p>
+    <div class="tabwrap"><table>
+      <tr><th>Questão</th><th>O que foi marcado</th><th>O que o texto mostrava</th></tr>
+      <tr><td>23/09 — 12: título “Nova reserva de água é encontrada no Cantareira”</td><td class="bad">ordem direta, enfatizando o sujeito da ação</td><td>O próprio enunciado avisou: a notícia põe primeiro o mais relevante. O título está na <b>voz passiva</b> e põe em destaque o <b>resultado</b> (a reserva encontrada); quem encontrou nem aparece.</td></tr>
+      <tr><td>23/09 — 11: personagem diante do espelho</td><td class="bad">narração não linear</td><td>O trecho repete “<b>Olhou-se</b>”: a personagem é quem olha e quem é olhada. É a <b>voz reflexiva</b> que mostra o exame que ela faz de si mesma. <i>(resposta deduzida — a professora só marcou X)</i></td></tr>
+      <tr><td>28/10 — 1: poema que pede para deixar o livro e olhar a janela, a rua, as próprias mãos</td><td class="bad">a</td><td>❓ Na foto, as alternativas a e b estão cobertas por um dedo. A b começa com “reconhecer a…” e termina em “…diano” — tudo indica algo como reconhecer a poesia no <b>cotidiano</b>, mas não dá para afirmar com certeza.</td></tr>
+    </table></div>
+    <div class="postit"><b>Passo a passo para interpretar:</b> 1) leia o enunciado e grife o que ele pergunta (efeito? estratégia? recurso?); 2) volte ao texto e ache a palavra ou a construção que o enunciado cita; 3) pergunte “qual conteúdo da prova está aqui?” (voz passiva? reflexiva? vocativo?); 4) elimine as alternativas que falam de algo que o texto não tem (diálogo onde não há diálogo, pretérito onde o verbo está no presente…).</div>
+    <div class="pegadinha"><span class="tt">⚠️ Você acertou quando ligou o texto ao conteúdo:</span> “cabra” e “Deixe de latomia” → variedade regional (23/09, 10) · o vocativo como estratégia para conquistar eleitores (28/10, 3).</div>
+    <div class="flips">
+      <div class="flip" data-id="f9a"><div class="in"><div class="fr">Manchete na voz passiva destaca o quê?</div><div class="vs">O resultado da ação (o que aconteceu), e não quem fez.</div></div></div>
+      <div class="flip" data-id="f9b"><div class="in"><div class="fr">“Olhou-se no espelho” mostra o quê sobre a personagem?</div><div class="vs">Que ela se examina: é ela mesma quem olha e quem é olhada (voz reflexiva).</div></div></div>
+    </div>
+  </div></section>
+
+  <div class="card" id="fimBox">
+    <h2>🪞 Chegou ao fim da oficina?</h2>
+    <p id="fimMsg">Role até aqui para liberar o botão.</p>
+    <button class="btn verde" id="btnFim" disabled>✅ Li o resumo até o fim</button>
+    <p style="margin-top:12px"><a class="btn verm" id="btnSim" href="simulado.html" style="pointer-events:none;opacity:.45">📝 Pronto para o Simulado!</a></p>
+  </div>
+  <p class="foot">🪞 Oficina dos Espelhos · Resumo de Revisão · feito para o jovem aprendiz</p>
+</div>
+<div class="savebar"><span class="st" id="stSalvo">💾 O progresso é salvo automaticamente</span>
+  <button class="btn peq" onclick="exportarKit('resumo-espelhos')">📥 Exportar</button>
+  <button class="btn peq" onclick="importarKit(function(){location.reload();})">📤 Importar</button>
+  <button class="btn peq" onclick="zerarResumo()">🗑️ Zerar Resumo</button>
+</div>
+<script>
+var R = getJ(KIT.keys.resumo) || {};
+if (!R.flip) R.flip = {};
+if (!R.scrollMax) R.scrollMax = 0;
+function salvarR(){ R.salvoEm = agoraISO(); setJ(KIT.keys.resumo, R); document.getElementById('stSalvo').textContent = '💾 Salvo em ' + fmtData(R.salvoEm); }
+var flips = document.querySelectorAll('.flip');
+document.getElementById('totFlip').textContent = flips.length;
+function contaFlip(){ document.getElementById('contaFlip').textContent = Object.keys(R.flip).length; }
+flips.forEach(function(f){
+  if (R.flip[f.dataset.id]) f.classList.add('on');
+  f.onclick = function(){ f.classList.toggle('on'); if (!R.flip[f.dataset.id]){ R.flip[f.dataset.id] = 1; salvarR(); contaFlip(); } };
+});
+contaFlip();
+function pctRolagem(){
+  var d = document.documentElement, alto = Math.max(d.scrollHeight, document.body.scrollHeight) - window.innerHeight;
+  if (alto <= 0) return 100;
+  return Math.min(100, Math.round((window.scrollY || d.scrollTop) / alto * 100));
+}
+function atualizaFim(){
+  var b = document.getElementById('btnFim'), s = document.getElementById('btnSim'), m = document.getElementById('fimMsg');
+  if (R.concluido){
+    b.disabled = true; b.textContent = '✅ Resumo concluído em ' + fmtData(R.concluidoEm);
+    s.style.pointerEvents = 'auto'; s.style.opacity = 1; m.textContent = 'O Simulado está destravado. Boa sorte, jovem aprendiz!';
+  } else if (R.scrollMax >= 90){ b.disabled = false; m.textContent = 'Você chegou ao fim. Toque no botão para destravar o Simulado.'; }
+  else { b.disabled = true; m.textContent = 'Role a página até o fim (leia os 9 espelhos) para liberar o botão. Você está em ' + R.scrollMax + '%.'; }
+}
+var tSalva = null;
+function aoRolar(){
+  var p = pctRolagem(); document.getElementById('barraLeitura').style.width = p + '%';
+  if (p > R.scrollMax){ R.scrollMax = p; clearTimeout(tSalva); tSalva = setTimeout(salvarR, 400); atualizaFim(); }
+}
+window.addEventListener('scroll', aoRolar, {passive:true});
+document.getElementById('btnFim').onclick = function(){
+  if (R.scrollMax < 90) return;
+  R.concluido = true; R.concluidoEm = agoraISO(); salvarR(); atualizaFim();
+  modal('<h3>✨ Simulado destravado!</h3><p>Você poliu os 9 espelhos. Agora é a hora do <b>Espelho Final</b>: faça sem olhar o Resumo, como se fosse a prova.</p>', [{t:'Depois', cls:''}, {t:'📝 Ir para o Simulado', cls:'verm', href:'simulado.html', manter:true}]);
+};
+function zerarResumo(){
+  modal('<h3>🗑️ Zerar o Resumo?</h3><p>Apaga as cartas viradas e a rolagem. Se o Resumo já foi concluído, o Simulado continua destravado.</p>',
+    [{t:'Cancelar'}, {t:'Zerar', cls:'verm', fn: function(){ var k = { concluido: R.concluido, concluidoEm: R.concluidoEm }; R = { flip:{}, scrollMax:0 }; if (k.concluido){ R.concluido = true; R.concluidoEm = k.concluidoEm; } salvarR(); location.reload(); }}]);
+}
+if (R.salvoEm) document.getElementById('stSalvo').textContent = '💾 Salvo em ' + fmtData(R.salvoEm);
+atualizaFim(); aoRolar();
+</script>
+
+</body>
+</html>

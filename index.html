@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oficina dos Espelhos · Recuperação de Português · 8º ano</title>
+<style>
+:root{--bg:#0f1420;--bg2:#161d2d;--card:#1b2436;--line:#2c3850;--prata:#d7dee8;--prata2:#9fb0c6;--ouro:#e2b65a;--ouro2:#f3d48f;--verde:#4fd18b;--verm:#ef5f67;--azul:#7fb3ff;--laranja:#f39a4b}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(1200px 600px at 80% -10%,#1d2a44 0%,transparent 60%),radial-gradient(900px 500px at -10% 20%,#1a2238 0%,transparent 55%),var(--bg);color:var(--prata);font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;font-size:18px;line-height:1.6}
+a{color:var(--ouro2)}
+.wrap{max-width:980px;margin:0 auto;padding:18px 16px 80px}
+h1,h2,h3{font-family:Georgia,"Palatino Linotype",serif;line-height:1.25}
+h1{font-size:2rem;margin:.2em 0}
+h2{font-size:1.45rem;margin:.2em 0 .5em}
+h3{font-size:1.15rem;margin:.8em 0 .3em;color:var(--ouro2)}
+.topo{background:linear-gradient(135deg,#1c2740,#111827);border:1px solid var(--line);border-radius:22px;padding:22px 20px;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.topo:before{content:"";position:absolute;inset:-40% -10% auto auto;width:340px;height:340px;background:conic-gradient(from 200deg,transparent,rgba(215,222,232,.18),transparent 40%);border-radius:50%;filter:blur(2px)}
+.topo .kicker{color:var(--ouro);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:.8rem}
+.topo p{margin:.4em 0;color:var(--prata2)}
+.moldura{border:3px solid var(--ouro);border-radius:18px;padding:3px}
+.moldura>.inner{border:1px solid rgba(226,182,90,.4);border-radius:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin:16px 0;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.narrador{background:rgba(127,179,255,.08);border-left:4px solid var(--azul);border-radius:10px;padding:10px 14px;margin:12px 0;font-style:italic;color:#c9dbf5}
+.postit{background:#fbe78a;color:#3a2f05;border-radius:4px 14px 6px 12px;padding:12px 14px;margin:12px 0;box-shadow:3px 4px 0 rgba(0,0,0,.35);transform:rotate(-.6deg);font-size:.97rem}
+.postit b{color:#5a3d00}
+.pegadinha{background:rgba(239,95,103,.1);border:1px solid rgba(239,95,103,.55);border-left:6px solid var(--verm);border-radius:12px;padding:10px 14px;margin:12px 0}
+.pegadinha .tt{color:#ff9aa0;font-weight:800}
+.trinca{background:rgba(243,154,75,.08);border:1px dashed var(--laranja);border-radius:12px;padding:10px 14px;margin:12px 0}
+.trinca .tt{color:var(--laranja);font-weight:800}
+.ok{color:var(--verde)}.bad{color:var(--verm)}
+.selo{display:inline-block;border-radius:999px;padding:2px 10px;font-size:.78rem;font-weight:800;margin-left:6px;vertical-align:middle;white-space:nowrap}
+.s-r{background:rgba(239,95,103,.18);color:#ff9aa0;border:1px solid rgba(239,95,103,.6)}
+.s-o{background:rgba(243,154,75,.16);color:#ffc08a;border:1px solid rgba(243,154,75,.6)}
+.s-y{background:rgba(226,182,90,.15);color:var(--ouro2);border:1px solid rgba(226,182,90,.55)}
+.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#24304a;color:var(--prata);border-radius:12px;padding:10px 16px;font-size:1rem;font-weight:700;cursor:pointer;text-decoration:none;font-family:inherit}
+.btn:hover{filter:brightness(1.15)}
+.btn[disabled]{opacity:.45;cursor:not-allowed;filter:none}
+.btn.ouro{background:linear-gradient(180deg,#f0c86e,#c9963a);color:#2a1d02;border-color:#e2b65a}
+.btn.verde{background:linear-gradient(180deg,#5fe09a,#2fa866);color:#04210f;border-color:#4fd18b}
+.btn.verm{background:linear-gradient(180deg,#f2737a,#c9414a);color:#fff;border-color:#ef5f67}
+.btn.peq{padding:6px 10px;font-size:.88rem;border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:.93rem}
+th,td{border:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top}
+th{background:#202b42;color:var(--ouro2)}
+tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.tabwrap{overflow-x:auto}
+.ex{background:#131a29;border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:6px 0;font-family:Georgia,serif}
+.ex u{text-decoration-color:var(--ouro);text-decoration-thickness:2px}
+mark{background:rgba(226,182,90,.25);color:#fff1cf;border-radius:4px;padding:0 3px}
+.savebar{position:sticky;bottom:0;z-index:30;background:rgba(15,20,32,.96);border-top:1px solid var(--line);padding:8px 12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;font-size:.85rem;backdrop-filter:blur(4px)}
+.savebar .st{color:var(--prata2);margin-right:6px}
+#modalBack{position:fixed;inset:0;background:rgba(5,8,14,.82);z-index:1000;display:none;align-items:center;justify-content:center;padding:16px}
+#modalBack.on{display:flex}
+#modalBox{background:#1b2436;border:2px solid var(--ouro);border-radius:18px;max-width:520px;width:100%;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+#modalBox .acts{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:14px}
+#lockCover{position:fixed;inset:0;background:#0b0f18;z-index:900;display:none}
+#lockCover.on{display:block}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:#202b42;border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:.88rem;color:var(--prata);text-decoration:none}
+.foot{text-align:center;color:var(--prata2);font-size:.9rem;margin-top:30px}
+@media (max-width:600px){body{font-size:17px}h1{font-size:1.6rem}.card{padding:14px}}
+</style>
+<script>
+/* ===== Oficina dos Espelhos — núcleo comum (armazenamento, modal, trilha) ===== */
+var KIT = {
+  slug: 'oficespelhos8',
+  nome: 'Oficina dos Espelhos',
+  keys: { resumo: 'oficespelhos8_resumo_v1', simulado: 'oficespelhos8_simulado_v1', trilha: 'oficespelhos8_trilha_v1' }
+};
+var MEM = {};
+function lsGet(k){ try{ var v = window.localStorage.getItem(k); if (v !== null) return v; }catch(e){} return Object.prototype.hasOwnProperty.call(MEM,k) ? MEM[k] : null; }
+function lsSet(k,v){ MEM[k] = v; try{ window.localStorage.setItem(k,v); }catch(e){} }
+function lsDel(k){ delete MEM[k]; try{ window.localStorage.removeItem(k); }catch(e){} }
+function getJ(k){ try{ var s = lsGet(k); return s ? JSON.parse(s) : null; }catch(e){ return null; } }
+function setJ(k,o){ lsSet(k, JSON.stringify(o)); }
+function kitKeys(){
+  var out = [], p = KIT.slug + '_';
+  try{ for (var i = 0; i < window.localStorage.length; i++){ var k = window.localStorage.key(i); if (k && k.indexOf(p) === 0) out.push(k); } }catch(e){}
+  for (var m in MEM){ if (m.indexOf(p) === 0 && out.indexOf(m) < 0) out.push(m); }
+  return out;
+}
+function agoraISO(){ return new Date().toISOString(); }
+function fmtData(iso){
+  if (!iso) return '—';
+  try{ var d = new Date(iso); function z(n){ return (n<10?'0':'')+n; }
+    return z(d.getDate())+'/'+z(d.getMonth()+1)+'/'+d.getFullYear()+' às '+z(d.getHours())+':'+z(d.getMinutes()); }catch(e){ return iso; }
+}
+function esc(s){ return String(s).replace(/[&<>"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+/* ---- modal próprio (nunca alert/confirm/prompt) ---- */
+function modal(html, botoes){
+  var back = document.getElementById('modalBack');
+  if (!back){ back = document.createElement('div'); back.id = 'modalBack'; back.innerHTML = '<div id="modalBox"><div id="modalTxt"></div><div class="acts" id="modalActs"></div></div>'; document.body.appendChild(back); }
+  document.getElementById('modalTxt').innerHTML = html;
+  var acts = document.getElementById('modalActs'); acts.innerHTML = '';
+  (botoes || [{t:'Ok', cls:'ouro'}]).forEach(function(b){
+    var el = document.createElement(b.href ? 'a' : 'button');
+    el.className = 'btn ' + (b.cls || ''); el.textContent = b.t;
+    if (b.href) el.href = b.href;
+    el.onclick = function(){ if (!b.manter) back.classList.remove('on'); if (b.fn) b.fn(); };
+    acts.appendChild(el);
+  });
+  back.classList.add('on');
+}
+
+/* ---- trilha: Resumo → Simulado (Diagnóstico sempre aberto) ---- */
+function estadoTrilha(){
+  var r = getJ(KIT.keys.resumo) || {}, s = getJ(KIT.keys.simulado) || {}, t = getJ(KIT.keys.trilha) || {};
+  return { resumo: !!r.concluido, resumoEm: r.concluidoEm || null, simulado: !!s.concluido, simuladoEm: s.concluidoEm || null,
+           liberado: !!t.liberadoPelosPais, liberadoEm: t.liberadoEm || null, tudoAberto: (!!r.concluido && !!s.concluido) || !!t.liberadoPelosPais };
+}
+function simuladoAberto(){ var e = estadoTrilha(); return e.resumo || e.simulado || e.liberado; }
+
+/* ---- exportar / importar ---- */
+function exportarKit(nomeArq){
+  var dados = { kit: KIT.nome, slug: KIT.slug, exportadoEm: agoraISO(), chaves: {} };
+  kitKeys().forEach(function(k){ var v = getJ(k); dados.chaves[k] = v !== null ? v : lsGet(k); });
+  var blob = new Blob([JSON.stringify(dados, null, 2)], {type:'application/json'});
+  var a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = (nomeArq || KIT.slug) + '_' + new Date().toISOString().slice(0,10) + '.json';
+  document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500);
+}
+function importarKit(depois){
+  var inp = document.createElement('input'); inp.type = 'file'; inp.accept = '.json,application/json';
+  inp.onchange = function(){
+    var f = inp.files && inp.files[0]; if (!f) return;
+    var rd = new FileReader();
+    rd.onload = function(){
+      try{
+        var d = JSON.parse(rd.result); var n = 0;
+        if (!d || !d.chaves) throw new Error('formato');
+        Object.keys(d.chaves).forEach(function(k){ if (k.indexOf(KIT.slug + '_') === 0){ var v = d.chaves[k]; lsSet(k, typeof v === 'string' ? v : JSON.stringify(v)); n++; } });
+        modal('<h3>📤 Progresso importado</h3><p>' + n + ' registro(s) deste kit foram carregados.</p>', [{t:'Ok', cls:'ouro', fn: function(){ if (depois) depois(); }}]);
+      }catch(e){ modal('<h3>Não deu certo</h3><p>Esse arquivo não parece ser um progresso exportado deste kit.</p>'); }
+    };
+    rd.readAsText(f);
+  };
+  inp.click();
+}
+</script>
+</head>
+<body>
+<style>
+.trilha{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:16px 0}
+.mat{display:block;text-decoration:none;color:var(--prata);background:var(--card);border:3px solid var(--ouro);border-radius:20px;padding:16px;position:relative;transition:transform .2s}
+.mat:hover{transform:translateY(-2px)}
+.mat .ic{font-size:2rem}.mat h3{margin:.2em 0;color:var(--ouro2)}
+.mat .st{font-size:.85rem;margin-top:6px}
+.mat.lock{border-color:#3a465e;filter:grayscale(.9);opacity:.75;cursor:not-allowed}
+.mat.lock h3{color:var(--prata2)}
+.mat.novo{animation:brilho 1.6s ease-in-out 3;box-shadow:0 0 0 3px rgba(79,209,139,.5)}
+@keyframes brilho{50%{box-shadow:0 0 26px 6px rgba(226,182,90,.7)}}
+.mat.anexo{border-style:dashed;border-color:#7fb3ff}
+.badge{display:inline-block;font-size:.75rem;font-weight:800;border-radius:999px;padding:2px 9px;margin-top:6px}
+.b-ok{background:rgba(79,209,139,.18);color:#9ff0c4;border:1px solid var(--verde)}
+.b-novo{background:rgba(226,182,90,.18);color:var(--ouro2);border:1px solid var(--ouro)}
+.b-lock{background:#202b42;color:var(--prata2);border:1px solid #3a465e}
+#selPais{display:none;background:rgba(79,209,139,.12);border:1px solid var(--verde);border-radius:12px;padding:8px 12px;margin:8px 0}
+#rel{display:none}
+#rel table td:first-child{width:38%}
+input.cod{background:#0f1522;color:var(--prata);border:1px solid #3b4a68;border-radius:8px;padding:8px 10px;font-size:1rem;width:220px}
+</style>
+<div class="wrap">
+  <header class="topo">
+    <div class="kicker">Kit de Recuperação · Colégio São José · 8º ano · Língua Portuguesa</div>
+    <h1>🪞 Oficina dos Espelhos</h1>
+    <p>Recuperação do 3º trimestre — prova na segunda-feira, <b>30/11</b>. Vozes verbais, funções do “se”, aposto, vocativo, porquês e interpretação.</p>
+    <div class="narrador" style="margin-top:12px">Bem-vindo à oficina, jovem aprendiz. Aqui a gente não joga fora o espelho que trincou: acha a trinca, dá polimento e ele volta a refletir. A voz passiva é o reflexo da ativa, a reflexiva é quem se olha no espelho e o aposto é a moldura que explica. Tudo foi montado a partir das <b>suas duas provas corrigidas</b> (23/09 e 28/10).</div>
+  </header>
+
+  <div id="selPais">🔓 <b>Trilha liberada pelos pais</b> <span id="selPaisEm"></span> <button class="btn peq" id="btnTrancar">Trancar de novo</button></div>
+
+  <h2 style="margin-top:22px">🛤️ Sua trilha</h2>
+  <p>Os materiais abrem <b>um por vez, na ordem</b>. Conclua um para destravar o próximo. O Laudo é um anexo e fica sempre aberto.</p>
+  <div class="trilha">
+    <a class="mat" id="mResumo" href="resumo.html"><div class="ic">🗺️</div><h3>1 · Resumo de Revisão</h3><div>Os 9 Espelhos: cada tema explicado com as frases das provas e o “onde trincou”.</div><div class="st" id="stResumo"></div></a>
+    <a class="mat" id="mSim" href="simulado.html"><div class="ic">📝</div><h3>2 · Espelho Final (Simulado)</h3><div>30 questões no formato da professora, com gabarito comentado.</div><div class="st" id="stSim"></div></a>
+    <a class="mat anexo" href="diagnostico.html"><div class="ic">🔍</div><h3>Anexo · Laudo das Trincas</h3><div>Diagnóstico questão por questão das duas provas (para os pais).</div><div class="st"><span class="badge b-ok">sempre aberto</span></div></a>
+  </div>
+
+  <div class="card">
+    <h2>📌 Como usar</h2>
+    <ol>
+      <li><b>Resumo de Revisão:</b> leia os 9 Espelhos, vire as cartas e preste atenção nos selos 🔴. Ao chegar ao fim, toque em <b>“✅ Li o resumo até o fim”</b> — isso destrava o Simulado.</li>
+      <li><b>Espelho Final:</b> faça como se fosse a prova, sem olhar o Resumo. Ao enviar, aparece o código <b>SIM-…</b>, que abre o gabarito comentado. As 4 discursivas são corrigidas por um adulto com a resposta modelo.</li>
+      <li>Depois do Simulado, <b>tudo fica aberto</b> para revisar quantas vezes quiser — na véspera, volte aos espelhos 🔴.</li>
+    </ol>
+    <p style="font-size:.9rem;color:var(--prata2)">O progresso fica salvo no navegador deste aparelho.</p>
+  </div>
+
+  <div class="card">
+    <h2>🧭 O que cai na recuperação</h2>
+    <p><b>Prova de 23/09:</b> voz ativa, passiva analítica, passiva sintética e reflexiva; sujeito agente e sujeito paciente; agente da passiva; transformar a voz; funções do “se” (partícula apassivadora, pronome reflexivo, índice de indeterminação do sujeito); interpretação.</p>
+    <p><b>Prova de 28/10:</b> aposto explicativo, especificativo, enumerativo e recapitulativo; vocativo; vocativo × aposto (a vírgula muda o sentido); por que, por quê, porque, porquê; interpretação.</p>
+    <p><b>Onde mais trincou:</b> 🔴 passiva sintética · 🔴 passiva analítica e agente da passiva · 🔴 tipos de aposto · 🔴 interpretação · 🟠 identificar a voz · 🟠 funções do “se” · 🟠 vírgula do vocativo · 🟠 atenção na folha de respostas.</p>
+  </div>
+
+  <div class="card">
+    <h2>👨‍👩‍👧 Dica para os pais</h2>
+    <p>O progresso é do navegador de cada aparelho: o Resumo lido no tablet não destrava o Simulado no computador. Use <b>📥 Exportar / 📤 Importar</b> ou libere a trilha com o código da família abaixo. O código <b>SIM-…</b> aparece para o aprendiz ao enviar o Simulado — peça que ele anote e digite aqui para ver o relatório. O <b>Laudo das Trincas</b> mostra, questão por questão, o que foi certo, errado e duvidoso nas provas.</p>
+  </div>
+
+  <div class="card">
+    <h2>📊 Relatório para os pais</h2>
+    <p>Digite o código do Simulado (<b>SIM-…</b>) ou o código fixo da família <b>PAIS-77</b> (mostra tudo e permite liberar a trilha).</p>
+    <p><input class="cod" id="codRel" placeholder="SIM-… ou PAIS-77" autocomplete="off"> <button class="btn ouro" id="btnRel">🔓 Ver relatório</button></p>
+    <p id="relMsg"></p>
+    <div id="rel"></div>
+  </div>
+
+  <div class="card">
+    <h2>💾 Progresso do kit</h2>
+    <p><button class="btn" onclick="exportarKit('oficina-dos-espelhos')">📥 Exportar tudo</button> <button class="btn" onclick="importarKit(function(){location.reload();})">📤 Importar</button> <button class="btn verm" id="btnZerarTudo">🗑️ Zerar tudo</button></p>
+    <p style="font-size:.85rem;color:var(--prata2)">“Zerar tudo” apaga só o progresso deste kit (Resumo, Simulado e trilha), não mexe em outros materiais.</p>
+  </div>
+
+  <p class="foot">Feito com carinho para o jovem aprendiz. 🪞 Achou a trinca? Dá polimento e segue. Boa recuperação!</p>
+</div>
+<script>
+function pintarTrilha(){
+  var e = estadoTrilha(), r = getJ(KIT.keys.resumo) || {}, s = getJ(KIT.keys.simulado) || {};
+  /* Resumo: sempre aberto (1º da trilha) */
+  document.getElementById('stResumo').innerHTML = e.resumo ? '<span class="badge b-ok">✅ Concluído em ' + fmtData(e.resumoEm) + '</span>' : '<span class="badge b-novo">▶ Comece por aqui</span>' + (r.scrollMax ? ' <small>(lido até ' + r.scrollMax + '%)</small>' : '');
+  var mS = document.getElementById('mSim'), stS = document.getElementById('stSim');
+  if (simuladoAberto()){
+    mS.classList.remove('lock'); mS.setAttribute('href', 'simulado.html'); mS.onclick = null;
+    if (e.simulado) stS.innerHTML = '<span class="badge b-ok">✅ Concluído em ' + fmtData(e.simuladoEm) + '</span>';
+    else { stS.innerHTML = '<span class="badge b-novo">✨ Novo destravado</span>'; mS.classList.add('novo'); }
+  } else {
+    mS.classList.add('lock'); mS.classList.remove('novo'); mS.removeAttribute('href');
+    var falta = Math.max(0, 90 - (r.scrollMax || 0));
+    stS.innerHTML = '<span class="badge b-lock">🔒 Trancado</span><br>Destrava quando você concluir o Resumo de Revisão: ler até o fim e tocar em “✅ Li o resumo até o fim”' + (falta > 0 ? ' (falta ler ' + falta + '% da página).' : ' (você já chegou ao fim — falta só tocar no botão).');
+    mS.onclick = function(ev){ ev.preventDefault(); modal('<h3>🔒 Ainda trancado</h3><p>Conclua o <b>Resumo de Revisão</b> primeiro: leia até o fim e toque em “✅ Li o resumo até o fim”.</p>', [{t:'Ir para o Resumo', cls:'ouro', href:'resumo.html', manter:true}, {t:'Ok'}]); };
+  }
+  var sp = document.getElementById('selPais');
+  if (e.liberado){ sp.style.display = 'block'; document.getElementById('selPaisEm').textContent = '(' + fmtData(e.liberadoEm) + ')'; } else sp.style.display = 'none';
+}
+document.getElementById('btnTrancar').onclick = function(){ var t = getJ(KIT.keys.trilha) || {}; t.liberadoPelosPais = false; t.trancadoEm = agoraISO(); setJ(KIT.keys.trilha, t); pintarTrilha(); if (relAberto) relatorio(relModo); };
+
+var relAberto = false, relModo = '';
+function linha(a, b){ return '<tr><td>' + a + '</td><td>' + b + '</td></tr>'; }
+function relatorio(modo){
+  relAberto = true; relModo = modo;
+  var e = estadoTrilha(), r = getJ(KIT.keys.resumo) || {}, s = getJ(KIT.keys.simulado) || {}, h = '<div class="tabwrap"><table>';
+  h += '<tr><th colspan="2">🛤️ Trilha</th></tr>';
+  h += linha('1 · Resumo de Revisão', e.resumo ? '✅ concluído em ' + fmtData(e.resumoEm) : '⏳ não concluído');
+  h += linha('2 · Espelho Final (Simulado)', e.simulado ? '✅ enviado em ' + fmtData(e.simuladoEm) : '⏳ não enviado');
+  var t = getJ(KIT.keys.trilha) || {};
+  h += linha('Liberação pelos pais', t.liberadoPelosPais ? '🔓 liberada em ' + fmtData(t.liberadoEm) : (t.liberadoEm ? 'foi liberada em ' + fmtData(t.liberadoEm) + ' e trancada de novo em ' + fmtData(t.trancadoEm) : 'não usada'));
+  h += '<tr><th colspan="2">🗺️ Resumo de Revisão</th></tr>';
+  h += linha('Rolagem máxima da página', (r.scrollMax || 0) + '%');
+  h += linha('Cartas viradas', Object.keys(r.flip || {}).length + ' de 18');
+  h += '<tr><th colspan="2">📝 Espelho Final</th></tr>';
+  if (s.enviado){
+    var obj = s.acertos;
+    h += linha('Código', s.codigo);
+    h += linha('Questões objetivas certas', obj + ' de 26');
+    h += linha('Discursivas (11, 19, 20, 23)', s.disc && Object.keys(s.disc).length ? 'corrigidas em parte ou no todo — veja no gabarito do Simulado' : 'aguardando correção do adulto (abra o Simulado → gabarito)');
+    var err = resumoErros(s);
+    h += linha('Temas com erro no Simulado', err || 'nenhum 🎉');
+  } else h += linha('Situação', 'ainda não enviado');
+  h += '</table></div>';
+  if (modo === 'pais'){
+    h += '<p style="margin-top:12px">' + (e.liberado ? '🔓 A trilha está liberada.' : '<button class="btn ouro" id="btnLiberar">🔓 Liberar todos os materiais</button>') + '</p>';
+  }
+  var box = document.getElementById('rel'); box.innerHTML = h; box.style.display = 'block';
+  var bl = document.getElementById('btnLiberar');
+  if (bl) bl.onclick = function(){ var t2 = getJ(KIT.keys.trilha) || {}; t2.liberadoPelosPais = true; t2.liberadoEm = agoraISO(); setJ(KIT.keys.trilha, t2); pintarTrilha(); relatorio('pais'); };
+}
+/* temas errados: o Simulado guarda as respostas; aqui se recalcula só para listar os temas (sem mexer em "concluido") */
+var TEMAS_SIM = [{"n":1,"tipo":"mc","tema":"Interpretação (poema)","certa":"q1o0"},{"n":2,"tipo":"mc","tema":"Tipos de aposto (texto)","certa":"q2o0"},{"n":3,"tipo":"mc","tema":"Sujeito × vocativo","certa":"q3o0"},{"n":4,"tipo":"mc","tema":"Tipos de aposto","certa":"q4o0"},{"n":5,"tipo":"mc","tema":"Tipos de aposto","certa":"q5o0"},{"n":6,"tipo":"mc","tema":"Tipos de aposto","certa":"q6o0"},{"n":7,"tipo":"mc","tema":"Tipos de aposto","certa":"q7o0"},{"n":8,"tipo":"sel","tema":"Tipos de aposto","certa":["III","II","I","IV"]},{"n":9,"tipo":"soma","tema":"Aposto e vocativo","certa":7},{"n":10,"tipo":"click","tema":"Vocativo","certa":[0,1,1,1,0]},{"n":12,"tipo":"mc","tema":"Vocativo (interpretação)","certa":"q12o0"},{"n":13,"tipo":"mc","tema":"Porquês","certa":"q13o0"},{"n":14,"tipo":"sel","tema":"Porquês","certa":["por quê","porquê","porque","por que","porque"]},{"n":15,"tipo":"mc","tema":"Identificar a voz verbal","certa":"q15o0"},{"n":16,"tipo":"mc","tema":"Voz passiva analítica","certa":"q16o0"},{"n":17,"tipo":"mc","tema":"Voz passiva sintética","certa":"q17o0"},{"n":18,"tipo":"vf","tema":"Voz passiva analítica e agente","certa":["V","V","F","V"]},{"n":21,"tipo":"mc","tema":"Agente da passiva","certa":"q21o0"},{"n":22,"tipo":"mc","tema":"Identificar a voz verbal","certa":"q22o0"},{"n":24,"tipo":"sel","tema":"Funções do “se”","certa":["1","3","2","1","3","2","3","1","3","1"]},{"n":25,"tipo":"mc","tema":"Vozes verbais","certa":"q25o0"},{"n":26,"tipo":"mc","tema":"Tipos de aposto","certa":"q26o0"},{"n":27,"tipo":"mc","tema":"Porquês","certa":"q27o0"},{"n":28,"tipo":"soma","tema":"Funções do “se” e vozes","certa":21},{"n":29,"tipo":"mc","tema":"Interpretação (manchete)","certa":"q29o0"},{"n":30,"tipo":"mc","tema":"Interpretação (voz reflexiva)","certa":"q30o0"}];
+function resumoErros(s){
+  var lista = [];
+  TEMAS_SIM.forEach(function(q){
+    var r = s.resp && s.resp[q.n], ok;
+    if (q.tipo === 'mc') ok = r === q.certa;
+    else if (q.tipo === 'soma') ok = r !== undefined && parseInt(r, 10) === q.certa;
+    else if (q.tipo === 'disc') return;
+    else ok = !!r && q.certa.every(function(c, i){ return String(r[i]) === String(c); });
+    if (!ok && lista.indexOf(q.tema) < 0) lista.push(q.tema);
+  });
+  return lista.join(' · ');
+}
+document.getElementById('btnRel').onclick = function(){
+  var v = (document.getElementById('codRel').value || '').trim().toUpperCase(), s = getJ(KIT.keys.simulado) || {}, m = document.getElementById('relMsg');
+  if (v === 'PAIS-77'){ m.innerHTML = '<span class="ok">Código da família aceito.</span>'; relatorio('pais'); }
+  else if (s.codigo && v === s.codigo){ m.innerHTML = '<span class="ok">Código do Simulado aceito.</span>'; relatorio('sim'); }
+  else { m.innerHTML = '<span class="bad">Código não reconhecido. Use o SIM-… que apareceu no Simulado ou PAIS-77.</span>'; document.getElementById('rel').style.display = 'none'; relAberto = false; }
+};
+document.getElementById('btnZerarTudo').onclick = function(){
+  modal('<h3>🗑️ Zerar tudo?</h3><p>Apaga o progresso do Resumo, do Simulado e da trilha <b>deste kit</b>. Os materiais voltam a abrir um por vez.</p>',
+    [{t:'Cancelar'}, {t:'Zerar tudo', cls:'verm', fn: function(){ kitKeys().forEach(lsDel); location.reload(); }}]);
+};
+pintarTrilha();
+</script>
+
+</body>
+</html>

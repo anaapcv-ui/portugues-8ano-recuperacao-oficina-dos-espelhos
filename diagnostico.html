@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Laudo das Trincas · Oficina dos Espelhos</title>
+<style>
+:root{--bg:#0f1420;--bg2:#161d2d;--card:#1b2436;--line:#2c3850;--prata:#d7dee8;--prata2:#9fb0c6;--ouro:#e2b65a;--ouro2:#f3d48f;--verde:#4fd18b;--verm:#ef5f67;--azul:#7fb3ff;--laranja:#f39a4b}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(1200px 600px at 80% -10%,#1d2a44 0%,transparent 60%),radial-gradient(900px 500px at -10% 20%,#1a2238 0%,transparent 55%),var(--bg);color:var(--prata);font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;font-size:18px;line-height:1.6}
+a{color:var(--ouro2)}
+.wrap{max-width:980px;margin:0 auto;padding:18px 16px 80px}
+h1,h2,h3{font-family:Georgia,"Palatino Linotype",serif;line-height:1.25}
+h1{font-size:2rem;margin:.2em 0}
+h2{font-size:1.45rem;margin:.2em 0 .5em}
+h3{font-size:1.15rem;margin:.8em 0 .3em;color:var(--ouro2)}
+.topo{background:linear-gradient(135deg,#1c2740,#111827);border:1px solid var(--line);border-radius:22px;padding:22px 20px;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.topo:before{content:"";position:absolute;inset:-40% -10% auto auto;width:340px;height:340px;background:conic-gradient(from 200deg,transparent,rgba(215,222,232,.18),transparent 40%);border-radius:50%;filter:blur(2px)}
+.topo .kicker{color:var(--ouro);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:.8rem}
+.topo p{margin:.4em 0;color:var(--prata2)}
+.moldura{border:3px solid var(--ouro);border-radius:18px;padding:3px}
+.moldura>.inner{border:1px solid rgba(226,182,90,.4);border-radius:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin:16px 0;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.narrador{background:rgba(127,179,255,.08);border-left:4px solid var(--azul);border-radius:10px;padding:10px 14px;margin:12px 0;font-style:italic;color:#c9dbf5}
+.postit{background:#fbe78a;color:#3a2f05;border-radius:4px 14px 6px 12px;padding:12px 14px;margin:12px 0;box-shadow:3px 4px 0 rgba(0,0,0,.35);transform:rotate(-.6deg);font-size:.97rem}
+.postit b{color:#5a3d00}
+.pegadinha{background:rgba(239,95,103,.1);border:1px solid rgba(239,95,103,.55);border-left:6px solid var(--verm);border-radius:12px;padding:10px 14px;margin:12px 0}
+.pegadinha .tt{color:#ff9aa0;font-weight:800}
+.trinca{background:rgba(243,154,75,.08);border:1px dashed var(--laranja);border-radius:12px;padding:10px 14px;margin:12px 0}
+.trinca .tt{color:var(--laranja);font-weight:800}
+.ok{color:var(--verde)}.bad{color:var(--verm)}
+.selo{display:inline-block;border-radius:999px;padding:2px 10px;font-size:.78rem;font-weight:800;margin-left:6px;vertical-align:middle;white-space:nowrap}
+.s-r{background:rgba(239,95,103,.18);color:#ff9aa0;border:1px solid rgba(239,95,103,.6)}
+.s-o{background:rgba(243,154,75,.16);color:#ffc08a;border:1px solid rgba(243,154,75,.6)}
+.s-y{background:rgba(226,182,90,.15);color:var(--ouro2);border:1px solid rgba(226,182,90,.55)}
+.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#24304a;color:var(--prata);border-radius:12px;padding:10px 16px;font-size:1rem;font-weight:700;cursor:pointer;text-decoration:none;font-family:inherit}
+.btn:hover{filter:brightness(1.15)}
+.btn[disabled]{opacity:.45;cursor:not-allowed;filter:none}
+.btn.ouro{background:linear-gradient(180deg,#f0c86e,#c9963a);color:#2a1d02;border-color:#e2b65a}
+.btn.verde{background:linear-gradient(180deg,#5fe09a,#2fa866);color:#04210f;border-color:#4fd18b}
+.btn.verm{background:linear-gradient(180deg,#f2737a,#c9414a);color:#fff;border-color:#ef5f67}
+.btn.peq{padding:6px 10px;font-size:.88rem;border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:.93rem}
+th,td{border:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top}
+th{background:#202b42;color:var(--ouro2)}
+tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.tabwrap{overflow-x:auto}
+.ex{background:#131a29;border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:6px 0;font-family:Georgia,serif}
+.ex u{text-decoration-color:var(--ouro);text-decoration-thickness:2px}
+mark{background:rgba(226,182,90,.25);color:#fff1cf;border-radius:4px;padding:0 3px}
+.savebar{position:sticky;bottom:0;z-index:30;background:rgba(15,20,32,.96);border-top:1px solid var(--line);padding:8px 12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;font-size:.85rem;backdrop-filter:blur(4px)}
+.savebar .st{color:var(--prata2);margin-right:6px}
+#modalBack{position:fixed;inset:0;background:rgba(5,8,14,.82);z-index:1000;display:none;align-items:center;justify-content:center;padding:16px}
+#modalBack.on{display:flex}
+#modalBox{background:#1b2436;border:2px solid var(--ouro);border-radius:18px;max-width:520px;width:100%;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+#modalBox .acts{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:14px}
+#lockCover{position:fixed;inset:0;background:#0b0f18;z-index:900;display:none}
+#lockCover.on{display:block}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:#202b42;border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:.88rem;color:var(--prata);text-decoration:none}
+.foot{text-align:center;color:var(--prata2);font-size:.9rem;margin-top:30px}
+@media (max-width:600px){body{font-size:17px}h1{font-size:1.6rem}.card{padding:14px}}
+</style>
+<script>
+/* ===== Oficina dos Espelhos — núcleo comum (armazenamento, modal, trilha) ===== */
+var KIT = {
+  slug: 'oficespelhos8',
+  nome: 'Oficina dos Espelhos',
+  keys: { resumo: 'oficespelhos8_resumo_v1', simulado: 'oficespelhos8_simulado_v1', trilha: 'oficespelhos8_trilha_v1' }
+};
+var MEM = {};
+function lsGet(k){ try{ var v = window.localStorage.getItem(k); if (v !== null) return v; }catch(e){} return Object.prototype.hasOwnProperty.call(MEM,k) ? MEM[k] : null; }
+function lsSet(k,v){ MEM[k] = v; try{ window.localStorage.setItem(k,v); }catch(e){} }
+function lsDel(k){ delete MEM[k]; try{ window.localStorage.removeItem(k); }catch(e){} }
+function getJ(k){ try{ var s = lsGet(k); return s ? JSON.parse(s) : null; }catch(e){ return null; } }
+function setJ(k,o){ lsSet(k, JSON.stringify(o)); }
+function kitKeys(){
+  var out = [], p = KIT.slug + '_';
+  try{ for (var i = 0; i < window.localStorage.length; i++){ var k = window.localStorage.key(i); if (k && k.indexOf(p) === 0) out.push(k); } }catch(e){}
+  for (var m in MEM){ if (m.indexOf(p) === 0 && out.indexOf(m) < 0) out.push(m); }
+  return out;
+}
+function agoraISO(){ return new Date().toISOString(); }
+function fmtData(iso){
+  if (!iso) return '—';
+  try{ var d = new Date(iso); function z(n){ return (n<10?'0':'')+n; }
+    return z(d.getDate())+'/'+z(d.getMonth()+1)+'/'+d.getFullYear()+' às '+z(d.getHours())+':'+z(d.getMinutes()); }catch(e){ return iso; }
+}
+function esc(s){ return String(s).replace(/[&<>"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+/* ---- modal próprio (nunca alert/confirm/prompt) ---- */
+function modal(html, botoes){
+  var back = document.getElementById('modalBack');
+  if (!back){ back = document.createElement('div'); back.id = 'modalBack'; back.innerHTML = '<div id="modalBox"><div id="modalTxt"></div><div class="acts" id="modalActs"></div></div>'; document.body.appendChild(back); }
+  document.getElementById('modalTxt').innerHTML = html;
+  var acts = document.getElementById('modalActs'); acts.innerHTML = '';
+  (botoes || [{t:'Ok', cls:'ouro'}]).forEach(function(b){
+    var el = document.createElement(b.href ? 'a' : 'button');
+    el.className = 'btn ' + (b.cls || ''); el.textContent = b.t;
+    if (b.href) el.href = b.href;
+    el.onclick = function(){ if (!b.manter) back.classList.remove('on'); if (b.fn) b.fn(); };
+    acts.appendChild(el);
+  });
+  back.classList.add('on');
+}
+
+/* ---- trilha: Resumo → Simulado (Diagnóstico sempre aberto) ---- */
+function estadoTrilha(){
+  var r = getJ(KIT.keys.resumo) || {}, s = getJ(KIT.keys.simulado) || {}, t = getJ(KIT.keys.trilha) || {};
+  return { resumo: !!r.concluido, resumoEm: r.concluidoEm || null, simulado: !!s.concluido, simuladoEm: s.concluidoEm || null,
+           liberado: !!t.liberadoPelosPais, liberadoEm: t.liberadoEm || null, tudoAberto: (!!r.concluido && !!s.concluido) || !!t.liberadoPelosPais };
+}
+function simuladoAberto(){ var e = estadoTrilha(); return e.resumo || e.simulado || e.liberado; }
+
+/* ---- exportar / importar ---- */
+function exportarKit(nomeArq){
+  var dados = { kit: KIT.nome, slug: KIT.slug, exportadoEm: agoraISO(), chaves: {} };
+  kitKeys().forEach(function(k){ var v = getJ(k); dados.chaves[k] = v !== null ? v : lsGet(k); });
+  var blob = new Blob([JSON.stringify(dados, null, 2)], {type:'application/json'});
+  var a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = (nomeArq || KIT.slug) + '_' + new Date().toISOString().slice(0,10) + '.json';
+  document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500);
+}
+function importarKit(depois){
+  var inp = document.createElement('input'); inp.type = 'file'; inp.accept = '.json,application/json';
+  inp.onchange = function(){
+    var f = inp.files && inp.files[0]; if (!f) return;
+    var rd = new FileReader();
+    rd.onload = function(){
+      try{
+        var d = JSON.parse(rd.result); var n = 0;
+        if (!d || !d.chaves) throw new Error('formato');
+        Object.keys(d.chaves).forEach(function(k){ if (k.indexOf(KIT.slug + '_') === 0){ var v = d.chaves[k]; lsSet(k, typeof v === 'string' ? v : JSON.stringify(v)); n++; } });
+        modal('<h3>📤 Progresso importado</h3><p>' + n + ' registro(s) deste kit foram carregados.</p>', [{t:'Ok', cls:'ouro', fn: function(){ if (depois) depois(); }}]);
+      }catch(e){ modal('<h3>Não deu certo</h3><p>Esse arquivo não parece ser um progresso exportado deste kit.</p>'); }
+    };
+    rd.readAsText(f);
+  };
+  inp.click();
+}
+</script>
+</head>
+<body>
+<div class="wrap">
+  <header class="topo">
+    <div class="kicker">🪞 Oficina dos Espelhos · anexo para os pais</div>
+    <h1>🔍 Laudo das Trincas</h1>
+    <p>Diagnóstico das duas provas corrigidas de Língua Portuguesa (8º ano): <b>23/09</b> (nota 5,0) e <b>28/10</b> (nota 6,0). Cada questão foi conferida nas fotos, com as marcas da correção.</p>
+    <p><a class="btn peq" href="index.html">← Voltar ao início</a></p>
+  </header>
+
+  <div class="card">
+    <h2>Como ler este laudo</h2>
+    <p>✅ certo · ❌ errado · ◐ parcial · ⚪ anulada · ❓ <b>ponto duvidoso</b> (marca pouco legível, trecho escondido na foto ou resposta esperada que a professora não escreveu).</p>
+    <p>Quando a professora só marcou X, a coluna “Resposta esperada” diz <b>(deduzida)</b>: é a resposta que as próprias questões da prova indicam, mas <b>não está escrita</b> na correção.</p>
+    <div class="narrador">Nota do espelheiro: um espelho só fica bom quando a gente acha exatamente onde ele trincou. É isso que esta página faz — questão por questão.</div>
+  </div>
+
+  <div class="card">
+    <h2>Prova de 23/09 — vozes verbais e funções do “se” <span class="selo s-o">nota 5,0</span></h2>
+    <div class="tabwrap"><table>
+      <tr><th>Questão</th><th>Tema</th><th>O que o aluno respondeu</th><th>Resultado</th><th>Resposta esperada / observação</th></tr>
+      <tr><td>1a (0,5)</td><td>Verso com voz ativa (poema)</td><td>“Invento as noites mais frias”</td><td>✅</td><td>—</td></tr>
+      <tr><td>1b (0,5)</td><td>Verso com voz passiva</td><td>“E que sempre se dirá”</td><td>✅</td><td>—</td></tr>
+      <tr><td>1c (0,5)</td><td>Passar “Invento algas cristalinas” para a passiva analítica</td><td>“Algas cristalinas eu invento”</td><td>❌</td><td>“Algas cristalinas são inventadas por mim.” <b>(deduzida)</b> — ele só mudou a ordem; a frase continuou na voz ativa.</td></tr>
+      <tr><td>1d (0,5)</td><td>Agente da passiva da frase do item c</td><td>“Algas cristalinas”</td><td>❌</td><td>“por mim” <b>(deduzida)</b> — ele apontou o sujeito paciente no lugar do agente.</td></tr>
+      <tr><td>2a (0,3)</td><td>Voz de “No verão, as garotas leram livros de romance policial.”</td><td>“Voz ativa”</td><td>✅ ❓</td><td>Há um visto vermelho entre o item 1d e a questão 2; o resultado foi lido como certo.</td></tr>
+      <tr><td>2b (0,3)</td><td>Forma do verbo na passiva analítica</td><td>“eram lidos”</td><td>⚪</td><td>A professora escreveu “anulada”.</td></tr>
+      <tr><td>2c (0,3)</td><td>Sujeito paciente na passiva sintética</td><td>“livros de romance policial”</td><td>✅</td><td>—</td></tr>
+      <tr><td>3a (0,3)</td><td>Voz de “A professora apresentava aos alunos a resposta correta.”</td><td>“Voz passiva analítica”</td><td>❌</td><td>Voz ativa <b>(deduzida)</b> — quem faz a ação (a professora) é o sujeito.</td></tr>
+      <tr><td>3b (0,3)</td><td>Forma do verbo na passiva analítica</td><td>“apresentou”</td><td>❌</td><td>“era apresentada” <b>(deduzida)</b> — “apresentou” continua ativa e muda o tempo.</td></tr>
+      <tr><td>3c (0,3)</td><td>Sujeito paciente na passiva sintética</td><td>“a resposta correta”</td><td>✅</td><td>—</td></tr>
+      <tr><td>4 (0,6)</td><td>“Duvidou-se da fala dos acusados.”</td><td>“está na voz ativa”</td><td>✅</td><td>—</td></tr>
+      <tr><td>5a–e (0,2 cada)</td><td>Reescrever 5 orações na passiva sintética</td><td>“Os portões abriram-se”, “Uma história de terror contou-se”, “Histórias de terror contavam-se”, “As cartas entregaram-se ontem”, “Água no Cantareira encontrou-se”</td><td>❌ ×5</td><td>❓ A professora marcou X nos 5 itens <b>sem escrever o motivo</b>. Em todos ele começou pelo antigo objeto. Os exemplos de passiva sintética da própria prova (questão 9) começam pelo verbo: “Venderam-se várias casas”, “Alugam-se quartos…”. Por isso o kit treina o modelo <b>verbo + se + sujeito paciente</b>: “Abriram-se os portões”, “Contou-se uma história de terror”, “Contavam-se histórias de terror”, “Entregaram-se as cartas ontem”, “Encontrou-se água no Cantareira”.</td></tr>
+      <tr><td>6a (0,3)</td><td>“A professora corrigiu <u>as atividades</u>.”</td><td>Paciente da ação/objeto da ação</td><td>✅</td><td>—</td></tr>
+      <tr><td>6b (0,3)</td><td>“Levantou-<u>se</u> da cadeira no mesmo momento.”</td><td>Marcou <b>duas</b> opções: pronome reflexivo e índice de indeterminação</td><td>❌ ❓</td><td>Marcar duas alternativas já anula o item. A professora não escreveu qual era a esperada — por isso esta frase <b>não entra no simulado</b>.</td></tr>
+      <tr><td>6c (0,3)</td><td>“Reclama-<u>se</u> de tudo.”</td><td>Índice de indeterminação do sujeito</td><td>✅</td><td>—</td></tr>
+      <tr><td>7a–b (0,2 cada)</td><td>Manchete “Coreia do Sul lança sonda lunar”: voz e passiva analítica</td><td>voz ativa; “Sonda lunar é lançada pela Coreia do Sul”</td><td>✅ ✅</td><td>—</td></tr>
+      <tr><td>7c (0,2)</td><td>Agente da passiva</td><td>“Coreia do Sul” (sem o “pela”)</td><td>❓</td><td>A marca vermelha está pouco legível (parece um “4” ou um “+”). O agente completo é “<b>pela</b> Coreia do Sul”.</td></tr>
+      <tr><td>8a–c (0,2)</td><td>Manchete sobre a Nasa: voz, função de “Nasa”, passiva analítica</td><td>voz ativa; sujeito agente; “Sinal de possível vida microbiana antiga em Marte é encontrada pela Nasa”</td><td>✅</td><td>Detalhe: ele escreveu “encontrad<b>a</b>”; o particípio concorda com “sinal” (“encontrad<b>o</b>”). A professora deu certo.</td></tr>
+      <tr><td>9 (0,1 cada)</td><td>Numerar as funções do “se” (1 apassivadora, 2 reflexivo, 3 índice)</td><td>8 de 10</td><td>◐</td><td>Errou “Fala-se muito do coronavírus” (pôs 1; a frase tem “falar <b>de</b>”, o que leva ao 3 — índice de indeterminação). Errou também “Acreditava-se que tudo terminaria bem” (pôs 3) ❓ — a professora marcou X, mas <b>não escreveu</b> qual número esperava; esta frase <b>não entra no simulado</b>.</td></tr>
+      <tr><td>10 (0,5)</td><td>Texto teatral com expressões regionais</td><td>“caracterização de uma variedade regional”</td><td>✅</td><td>—</td></tr>
+      <tr><td>11 (0,5)</td><td>Trecho de romance: a personagem se examina diante do espelho</td><td>“A narração não linear”</td><td>❌</td><td>“A voz reflexiva” <b>(deduzida)</b> — o trecho repete “Olhou-se” (a personagem é quem faz e quem recebe a ação).</td></tr>
+      <tr><td>12 (0,5)</td><td>Título “Nova reserva de água é encontrada no Cantareira”</td><td>“A ordem direta, enfatizando o sujeito da ação”</td><td>❌</td><td>“A voz passiva, enfatizando o resultado da ação” <b>(deduzida)</b> — o próprio enunciado lembra que a notícia põe primeiro o mais relevante.</td></tr>
+    </table></div>
+    <p class="pegadinha"><span class="tt">❓ Conta que não fecha:</span> somando só as marcas visíveis (sem a questão anulada) chega-se a cerca de 5,4, e a nota da prova é 5,0. Alguma marca (provavelmente 2a ou 7c) deve ter valor diferente do que aparece na foto.</p>
+  </div>
+
+  <div class="card">
+    <h2>Prova de 28/10 — aposto, vocativo e porquês <span class="selo s-o">nota 6,0</span></h2>
+    <p>Respostas da folha da capa: 1 A · 2 B · 3 B · 4 D · 5 B · 6 D · 7 D · 8 D · 9 B · 10 B.</p>
+    <div class="tabwrap"><table>
+      <tr><th>Questão</th><th>Tema</th><th>O que o aluno respondeu</th><th>Resultado</th><th>Resposta esperada / observação</th></tr>
+      <tr><td>1 (0,5)</td><td>Poema: deixar o livro e olhar a janela, a rua, as próprias mãos</td><td>a</td><td>❌ ❓</td><td>Na foto, as alternativas a e b estão <b>parcialmente cobertas por um dedo</b>. Dá para ler só o começo da b (“reconhecer a…”) e o fim (“…diano”, provavelmente “cotidiano”). Não dá para afirmar o gabarito com certeza.</td></tr>
+      <tr><td>2 (0,5)</td><td>Apostos explicativos num trecho de romance</td><td>b</td><td>❌</td><td>d <b>(deduzida)</b> — o trecho que explica quem era o pai (“um dos moradores mais antigos…”) e o apelido do rapaz (“ou …”). A alternativa b tinha um termo que vem depois do verbo “era” — isso não é aposto.</td></tr>
+      <tr><td>3 (0,5)</td><td>Vocativo como estratégia numa reportagem</td><td>b (conquistar eleitores)</td><td>✅</td><td>—</td></tr>
+      <tr><td>4 (0,5)</td><td>Mesmo nome como sujeito e como vocativo</td><td>d (sujeito; vocativo)</td><td>✅</td><td>—</td></tr>
+      <tr><td>5 (0,5)</td><td>Aposto especificativo</td><td>b (“A aluna [nome] passou…”)</td><td>✅</td><td>—</td></tr>
+      <tr><td>6 (0,5)</td><td>Função dos nomes usados para chamar alguém numa tirinha</td><td>d (vocativo)</td><td>✅</td><td>—</td></tr>
+      <tr><td>7 (1,0)</td><td>Classificar 3 apostos (lista depois de dois-pontos; termo entre travessões; nome colado ao substantivo)</td><td>d (enumerativo, especificativo, explicativo)</td><td>❌</td><td>b <b>(deduzida)</b> — enumerativo, explicativo, especificativo. Ele trocou explicativo e especificativo.</td></tr>
+      <tr><td>8 (1,0)</td><td>Termo destacado que NÃO é aposto explicativo</td><td>d (“…, todas são matérias importantes”)</td><td>✅ ❓</td><td>A professora deu certo. Atenção: a alternativa a (“Minha amiga <b>[nome]</b>…”) também não é explicativo (é especificativo). A questão tinha duas opções defensáveis.</td></tr>
+      <tr><td>9 (1,0)</td><td>Aposto que NÃO se refere ao sujeito</td><td>Marcou <b>d</b> na questão, mas escreveu <b>B</b> na folha de respostas</td><td>❌</td><td>A d estava certa (o aposto explica o objeto — o nome do livro que foi lido —, não o sujeito). O erro foi <b>ao passar para a folha</b>.</td></tr>
+      <tr><td>10 (0,5)</td><td>Uso INCORRETO dos porquês</td><td>b (“Porque você fingiu…?”)</td><td>✅</td><td>—</td></tr>
+      <tr><td>11 (0,1 cada)</td><td>Sublinhar o vocativo em 5 frases</td><td>5 de 5</td><td>✅</td><td>—</td></tr>
+      <tr><td>12 (1,0)</td><td>Diferença de sentido: “[Nome], minha filha segue meus conselhos.” × “[Nome], minha filha, segue meus conselhos.”</td><td>Disse que na frase A “está pedindo” para a pessoa seguir os conselhos e que na B a pessoa “segue os conselhos”</td><td>◐ ❓</td><td>X na 1ª linha e visto no fim: parcial. A frase B foi bem explicada. Na A, o nome é <b>vocativo</b> e “minha filha” é o <b>sujeito</b> de “segue”: fala-se COM a pessoa SOBRE a filha — não é um pedido. A resposta modelo da professora não está escrita.</td></tr>
+      <tr><td>13 (1,0)</td><td>Relacionar 4 frases aos tipos de aposto</td><td>a = II, b = III, c = I, d = IV</td><td>◐ 2 de 4</td><td>Trocou recapitulativo e enumerativo: a (“Prosperidade, segurança e alegria, <b>isso</b>…”) é III; b (“três características: dedicação, respeito e interesse”) é II.</td></tr>
+      <tr><td>14 (0,5)</td><td>Justificar o “Por que” na fala de uma tirinha</td><td>separado e sem acento, porque é pergunta no início da frase</td><td>✅</td><td>—</td></tr>
+      <tr><td>15 (0,1 cada)</td><td>Completar com porque / porquê / por que / por quê</td><td>5 de 5</td><td>✅</td><td>—</td></tr>
+    </table></div>
+  </div>
+
+  <div class="card">
+    <h2>🧭 Pontos fracos — por prioridade</h2>
+    <div class="tabwrap"><table>
+      <tr><th>Prioridade</th><th>Tema</th><th>Onde trincou</th><th>No kit</th></tr>
+      <tr><td><span class="selo s-r">🔴 máxima</span></td><td>Interpretação ligada à gramática do texto</td><td>23/09: Q11, Q12 · 28/10: Q1 — <b>errou nas duas provas</b></td><td>Espelho 9 · Simulado Q1, Q2, Q29, Q30</td></tr>
+      <tr><td><span class="selo s-r">🔴 máxima</span></td><td>Voz passiva sintética (montar a frase)</td><td>23/09: Q5 inteira (5 itens)</td><td>Espelho 4 · Simulado Q17, Q19, Q28</td></tr>
+      <tr><td><span class="selo s-r">🔴 máxima</span></td><td>Voz passiva analítica e agente da passiva</td><td>23/09: Q1c, Q1d, Q3b (+ Q7c ❓)</td><td>Espelhos 2 e 3 · Simulado Q16, Q18, Q20–Q23</td></tr>
+      <tr><td><span class="selo s-r">🔴 máxima</span></td><td>Tipos de aposto</td><td>28/10: Q2, Q7, Q13 — três questões na mesma prova</td><td>Espelho 6 · Simulado Q2, Q4–Q9, Q26</td></tr>
+      <tr><td><span class="selo s-o">🟠 reforçar</span></td><td>Identificar a voz verbal</td><td>23/09: Q3a</td><td>Espelho 1 · Simulado Q15, Q22, Q25</td></tr>
+      <tr><td><span class="selo s-o">🟠 reforçar</span></td><td>Funções do “se”</td><td>23/09: Q6b, Q9 (2 itens)</td><td>Espelho 5 · Simulado Q24, Q28</td></tr>
+      <tr><td><span class="selo s-o">🟠 reforçar</span></td><td>A vírgula muda o sentido (vocativo × aposto)</td><td>28/10: Q12</td><td>Espelho 7 · Simulado Q11</td></tr>
+      <tr><td><span class="selo s-o">🟠 reforçar</span></td><td>Atenção ao passar para a folha de respostas</td><td>28/10: Q9</td><td>Post-it no Resumo e aviso no Simulado</td></tr>
+      <tr><td><span class="selo s-y">🟡 ajuste fino</span></td><td>Vocativo, porquês, variedade regional</td><td>Acertou: 28/10 Q3, Q4, Q6, Q10, Q11, Q14, Q15 · 23/09 Q10</td><td>Espelhos 7 e 8 · Simulado Q3, Q10, Q12–Q14, Q27</td></tr>
+    </table></div>
+    <div class="postit"><b>Para os pais:</b> estas são as <b>mesmas provas</b> que já serviram de base para o kit “Pista de Manobras” (10/11). Este kit é novo e segue a receita de recuperação: laudo questão por questão, Resumo de Revisão e um Simulado de 30 questões no formato da professora.</div>
+  </div>
+
+  <div class="card">
+    <h2>📌 Fontes</h2>
+    <p>As 10 fotos das provas corrigidas de 23/09/2026 e 28/10/2026 (Colégio São José, 8º ano). O livro do 8º ano na plataforma SM não estava acessível (sem login do 8º ano), então nada foi tirado do livro.</p>
+  </div>
+  <p class="foot">🪞 Oficina dos Espelhos · laudo para os pais · feito para o jovem aprendiz</p>
+</div>
+
+</body>
+</html>
